@@ -186,10 +186,8 @@ export default {
         -khtml-user-select: none; /* Konqueror HTML */
         -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
-        <<<<<<<HEAD
         user-select: none;
-        =======user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-        >>>>>>>2bc75abbb10053dfd27106ed33f332fa08689307 .circleonclick {
+        circleonclick {
           background: red;
           z-index: -1;
           border-radius: 50%;
