@@ -187,6 +187,7 @@ export default {
         -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
         user-select: none;
+
         circleonclick {
           background: red;
           z-index: -1;
