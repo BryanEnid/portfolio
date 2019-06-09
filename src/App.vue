@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <NavigatorBar v-on:navUpdate="blurEverything" />
-    <LandingPage :blur="blurState" />
-    <SkillsPage :blur="blurState" />
+    <NavigatorBar v-on:navUpdate="blurEverything"/>
+    <LandingPage :blur="blurState"/>
+    <SkillsPage :blur="blurState"/>
   </div>
 </template>
 

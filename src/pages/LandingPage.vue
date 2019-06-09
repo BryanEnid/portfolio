@@ -1,9 +1,9 @@
 <template>
   <div id="landing-page" :class="{ blur: blur }">
     <!-- background -->
-    <div id="sketch-holder3" class="i3"></div>
+    <!-- <div id="sketch-holder3" class="i3"></div>
     <div id="sketch-holder2" class="i2"></div>
-    <div id="sketch-holder"></div>
+    <div id="sketch-holder"></div>-->
 
     <div class="leftandright">
       <div class="profilePicture">
@@ -18,12 +18,9 @@
             <VueTyper
               class="hey"
               :text="[
-                'Full Stack Developer',
-                'Mobile Developer',
-                'Graphic Designer',
-                'Software Engineer',
-                'Product Manager',
-                'Product Designer'
+                'Full Stack Dev.',
+                'Software Dev.',
+                'Product Manager'
               ]"
               :pre-type-delay="400"
               :type-delay="150"
@@ -71,19 +68,19 @@ export default {
   },
   methods: {
     circleEffect({ x, y, target }) {
-      this.animation = true;
       let div = document.createElement("div");
+      div.className = "circleonclick";
 
       let randomID = "";
-      let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+      let characters = "abcdefghijklmnopqrstuvwxyz";
       let charactersLength = characters.length;
+
       for (let i = 0; i < 20; i++) {
         randomID += characters.charAt(
           Math.floor(Math.random() * charactersLength)
         );
       }
       div.id = randomID;
-      div.className = "circleonclick";
 
       let borderColor = getComputedStyle(target).borderColor;
       let elemPosition = target.getBoundingClientRect();
@@ -91,13 +88,22 @@ export default {
       let top = parseFloat(y - elemPosition.y);
       div.setAttribute(
         "style",
-        `left: ${left}px; top: ${top}px; background: ${borderColor};`
+        `left: ${left}px;
+        top: ${top}px; 
+        background: ${borderColor}; 
+        z-index: -1;
+        border-radius: 50%;
+        width: 4px;
+        height: 4px;
+        position: absolute;
+        animation: grow 3s forwards;`
       );
+      console.log(target);
       target.appendChild(div);
 
       setTimeout(() => {
-        let div = document.getElementById(`${randomID}`);
-        target.removeChild(div);
+        let idDOM = document.getElementById(`${randomID}`);
+        target.removeChild(idDOM);
       }, 2700);
     }
   }
