@@ -1,7 +1,5 @@
 <template>
-  <div class="container">
-    asd
-  </div>
+  <div class="container" id="Skills"></div>
 </template>
 
 <script>
