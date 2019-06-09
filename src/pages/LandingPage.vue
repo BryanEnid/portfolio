@@ -38,22 +38,21 @@
               things, now I want to learn it all!
             </p>
             <div class="buttons">
-              <div class="btn skillsbtn" @click="circleEffect">Skills</div>
-              <div class="btn projectbtn" @click="circleEffect">Projects</div>
-              <div class="btn achievedbtn" @click="circleEffect">Achivements</div>
+              <AwesomeButton text="Skills" border-color="#03a9f4"></AwesomeButton>
+              <AwesomeButton text="Projects" border-color="#f57f17"></AwesomeButton>
+              <AwesomeButton text="Achievements" border-color="#1faa00"></AwesomeButton>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="next btn"></div>
   </div>
 </template>
 
 <script>
 import { VueTyper } from "vue-typer";
 import { setTimeout } from "timers";
+import AwesomeButton from "../components/LandingPageButton.vue";
 
 export default {
   name: "LandingPage",
@@ -61,7 +60,8 @@ export default {
     blur: Boolean
   },
   components: {
-    VueTyper
+    VueTyper,
+    AwesomeButton
   },
   data() {
     return {};
@@ -98,7 +98,6 @@ export default {
         position: absolute;
         animation: grow 3s forwards;`
       );
-      console.log(target);
       target.appendChild(div);
 
       setTimeout(() => {
@@ -177,44 +176,6 @@ export default {
       h3,
       p {
         margin: 20px;
-      }
-      .btn {
-        border: solid 1px;
-        border-radius: 3px;
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 0 10px;
-        overflow: hidden;
-        position: relative;
-
-        -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-        -khtml-user-select: none; /* Konqueror HTML */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-        user-select: none;
-
-        circleonclick {
-          background: red;
-          z-index: -1;
-          border-radius: 50%;
-          width: 4px;
-          height: 4px;
-          position: absolute;
-          animation: grow 3s forwards;
-        }
-      }
-      .skillsbtn {
-        border-color: #03a9f4;
-        transition: background 0.4s;
-      }
-
-      .projectbtn {
-        border-color: #f57f17;
-      }
-
-      .achievedbtn {
-        border-color: #1faa00;
       }
 
       .box {

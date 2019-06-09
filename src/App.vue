@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import NavigatorBar from "./components/NavigatorBar.vue";
+import NavigatorBar from "./components/AppNavigatorBar.vue";
 import LandingPage from "./pages/LandingPage.vue";
 import SkillsPage from "./pages/SkillsPage.vue";
 
