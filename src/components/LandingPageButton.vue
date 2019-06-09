@@ -64,6 +64,8 @@ export default {
         let idDOM = document.getElementById(`${randomID}`);
         target.removeChild(idDOM);
       }, 2700);
+
+      this.$emit("wasClicked", this.$props.text);
     }
   }
 };
