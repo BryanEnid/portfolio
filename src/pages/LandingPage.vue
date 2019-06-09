@@ -1,9 +1,9 @@
 <template>
   <div id="landing-page" :class="{ blur: blur }">
     <!-- background -->
-    <!-- <div id="sketch-holder3" class="i3"></div>
+    <div id="sketch-holder3" class="i3"></div>
     <div id="sketch-holder2" class="i2"></div>
-    <div id="sketch-holder"></div>-->
+    <div id="sketch-holder"></div>
 
     <div class="leftandright">
       <div class="profilePicture">
@@ -38,9 +38,13 @@
               things, now I want to learn it all!
             </p>
             <div class="buttons">
-              <AwesomeButton text="Skills" border-color="#03a9f4"></AwesomeButton>
-              <AwesomeButton text="Projects" border-color="#f57f17"></AwesomeButton>
-              <AwesomeButton text="Achievements" border-color="#1faa00"></AwesomeButton>
+              <AwesomeButton text="Skills" border-color="#03a9f4" @wasClicked="scrollIntoView"></AwesomeButton>
+              <AwesomeButton text="Projects" border-color="#f57f17" @wasClicked="scrollIntoView"></AwesomeButton>
+              <AwesomeButton
+                text="Achievements"
+                border-color="#1faa00"
+                @wasClicked="scrollIntoView"
+              ></AwesomeButton>
             </div>
           </div>
         </div>
@@ -51,11 +55,10 @@
 
 <script>
 import { VueTyper } from "vue-typer";
-import { setTimeout } from "timers";
 import AwesomeButton from "../components/LandingPageButton.vue";
+import { setTimeout } from "timers";
 
 export default {
-  name: "LandingPage",
   props: {
     blur: Boolean
   },
@@ -63,47 +66,12 @@ export default {
     VueTyper,
     AwesomeButton
   },
-  data() {
-    return {};
-  },
   methods: {
-    circleEffect({ x, y, target }) {
-      let div = document.createElement("div");
-      div.className = "circleonclick";
-
-      let randomID = "";
-      let characters = "abcdefghijklmnopqrstuvwxyz";
-      let charactersLength = characters.length;
-
-      for (let i = 0; i < 20; i++) {
-        randomID += characters.charAt(
-          Math.floor(Math.random() * charactersLength)
-        );
-      }
-      div.id = randomID;
-
-      let borderColor = getComputedStyle(target).borderColor;
-      let elemPosition = target.getBoundingClientRect();
-      let left = parseFloat(x - elemPosition.x);
-      let top = parseFloat(y - elemPosition.y);
-      div.setAttribute(
-        "style",
-        `left: ${left}px;
-        top: ${top}px; 
-        background: ${borderColor}; 
-        z-index: -1;
-        border-radius: 50%;
-        width: 4px;
-        height: 4px;
-        position: absolute;
-        animation: grow 3s forwards;`
-      );
-      target.appendChild(div);
-
+    scrollIntoView(name) {
+      let container = document.getElementById(name);
       setTimeout(() => {
-        let idDOM = document.getElementById(`${randomID}`);
-        target.removeChild(idDOM);
-      }, 2700);
+        container.scrollIntoView({ behavior: "smooth" });
+      }, 400);
     }
   }
 };
