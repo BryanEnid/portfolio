@@ -3,6 +3,8 @@
     <NavigatorBar v-on:navUpdate="blurEverything"/>
     <LandingPage :blur="blurState"/>
     <SkillsPage :blur="blurState"/>
+    <ProjectsPage :blur="blurState"/>
+    <AchievementsPage :blur="blurState"/>
   </div>
 </template>
 
@@ -10,13 +12,17 @@
 import NavigatorBar from "./components/AppNavigatorBar.vue";
 import LandingPage from "./pages/LandingPage.vue";
 import SkillsPage from "./pages/SkillsPage.vue";
+import ProjectsPage from "./pages/ProjectsPage.vue";
+import AchievementsPage from "./pages/AchievementsPage.vue";
 
 export default {
   name: "app",
   components: {
     NavigatorBar,
     LandingPage,
-    SkillsPage
+    SkillsPage,
+    ProjectsPage,
+    AchievementsPage
   },
   data() {
     return {
