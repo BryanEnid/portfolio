@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <NavigatorBar v-on:navUpdate="blurEverything"/>
-    <LandingPage :blur="blurState"/>
-    <SkillsPage :blur="blurState"/>
-    <ProjectsPage :blur="blurState"/>
-    <AchievementsPage :blur="blurState"/>
+    <NavigatorBar v-on:navUpdate="blurEverything"></NavigatorBar>
+    <LandingPage :blur="blurState"></LandingPage>
+    <SkillsPage :blur="blurState"></SkillsPage>
+    <ProjectsPage :blur="blurState"></ProjectsPage>
+    <AchievementsPage :blur="blurState"></AchievementsPage>
   </div>
 </template>
 
