@@ -124,6 +124,7 @@ section {
 
 ul {
   margin: 20px;
+  list-style: none;
 }
 .indent {
   padding: 0px;
