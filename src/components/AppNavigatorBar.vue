@@ -2,10 +2,10 @@
   <nav>
     <ul id="ulNavigation" :class="{ ulActive: isUlVisible }">
       <a href="https://github.com/BryanEnid" target="_blank">
-        <icon name="github" />
+        <icon name="github"/>
       </a>
       <a href="https://www.linkedin.com/in/bryanenid/" target="_blank">
-        <icon name="linkedin" />
+        <icon name="linkedin"/>
       </a>
       <a href="#">
         <li>Download Resume</li>
@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scopped>
 //Theme
 @backColor: black;
 @contColor: white;
