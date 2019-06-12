@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import icon from "../assets/Icons.vue";
+import icon from "../components/AppIcons.vue";
 
 export default {
   name: "NavigatorBar",

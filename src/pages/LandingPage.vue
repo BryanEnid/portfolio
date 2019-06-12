@@ -56,7 +56,6 @@
 <script>
 import { VueTyper } from "vue-typer";
 import AwesomeButton from "../components/LandingPageButton.vue";
-import { setTimeout } from "timers";
 
 export default {
   props: {
