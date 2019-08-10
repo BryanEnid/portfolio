@@ -2,10 +2,10 @@
   <nav>
     <ul id="ulNavigation" :class="{ ulActive: isUlVisible }">
       <a href="https://github.com/BryanEnid" target="_blank">
-        <icon name="github"/>
+        <icon name="github" />
       </a>
       <a href="https://www.linkedin.com/in/bryanenid/" target="_blank">
-        <icon name="linkedin"/>
+        <icon name="linkedin" />
       </a>
       <a href="#">
         <li>Download Resume</li>
@@ -31,12 +31,13 @@ export default {
   components: {
     icon
   },
+  props: {
+    screenSize: Boolean
+  },
   data() {
     return {
       isUlVisible: false,
       ulNavigation: null,
-      container: null,
-      screenSizeMin: false,
       windowSize: 1300,
       windowWasResized: false
     };
@@ -44,13 +45,9 @@ export default {
   methods: {},
   mounted() {
     //Get DOMs
-    this.$nextTick(() => {
-      this.ulNavigation = document.querySelector("#ulNavigation");
-      this.container = document.querySelector(".container");
-      this.screenSizeMin = window.matchMedia("(max-width: 767px)").matches;
-      window.addEventListener("resize", () => {
-        this.isUlVisible = false;
-      });
+    this.ulNavigation = document.querySelector("#ulNavigation");
+    window.addEventListener("resize", () => {
+      this.isUlVisible = false;
     });
   },
   watch: {
@@ -69,14 +66,14 @@ export default {
 @itemsInNav: 4;
 
 nav {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  background: @backColor;
-  border: solid @backColor 1px;
-  color: @contColor;
+  background: black;
+  border: solid black 1px;
+  color: white;
   padding: 0;
   font-size: 1.1em;
   opacity: 0.9;
@@ -94,8 +91,12 @@ nav {
 
     a:visited,
     a {
-      color: @contColor;
+      color: white;
       text-decoration: none;
+
+      svg {
+        width: 30%;
+      }
     }
   }
 
@@ -115,17 +116,15 @@ nav {
   }
 
   //screen sizes
-  @wide-screen-down: ~"(max-width: 1199px)";
-  @desktop-down: ~"(max-width: 991px)";
-  @tablet-down: ~"(max-width: 767px)";
-  @phone-down: ~"(max-width: 480px)";
-  @small-phone-down: ~"(max-width: 320px)";
+  @tablet: ~"(max-width: 991px)";
+  @mobile: ~"(max-width: 767px)";
 
-  @media @tablet-down {
+  @media @mobile {
     position: fixed;
 
     //Assign with Javascript
     .ulActive {
+      display: grid;
       transform: translateX(-100%);
     }
 
@@ -133,11 +132,12 @@ nav {
       //reseting
       list-style: none;
       float: initial;
+      display: none;
 
       //changes
       grid-template-columns: 1fr;
       grid-template-rows: repeat(auto-fill, 1fr);
-      height: 100vh;
+      height: 100%;
       width: 60%;
       background: @backColor;
       position: fixed;

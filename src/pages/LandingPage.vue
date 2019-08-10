@@ -1,27 +1,22 @@
 <template>
-  <div id="landing-page" :class="{ blur: blur }">
+  <div id="landing-page" class="container" :class="{ blur: blur }">
     <!-- background -->
-    <div id="sketch-holder3" class="i3"></div>
-    <div id="sketch-holder2" class="i2"></div>
-    <div id="sketch-holder"></div>
+    <div v-show="!screenSize" id="sketch-holder3" class="i3" style="z-index: -1;"></div>
+    <div v-show="!screenSize" id="sketch-holder2" class="i2" style="z-index: -1;"></div>
+    <div id="sketch-holder" style="z-index: -1;"></div>
 
     <div class="leftandright">
       <div class="profilePicture">
-        <img class="roundedBryanImage" src="../assets/roundedProfile.png">
-        <img class="bryanImage" src="../assets/Bryan.png">
+        <img class="roundedBryanImage" src="../assets/roundedProfile.png" />
+        <img class="bryanImage" src="../assets/Bryan.png" />
       </div>
 
       <div id="about-me">
         <div class="box">
           <h1>
-            Future -
             <VueTyper
               class="hey"
-              :text="[
-                'Full Stack Dev.',
-                'Software Dev.',
-                'Product Manager'
-              ]"
+              :text="['Full Stack Dev.', 'Front End Dev.', 'Back End Dev.']"
               :pre-type-delay="400"
               :type-delay="150"
               :pre-erase-delay="4000"
@@ -32,18 +27,32 @@
           <div>
             <h3>Bryan E. Tejada</h3>
             <p>
-              Hello, my name is Bryan Tejada. I am college student attending
-              Georgia State University majoring in Computer Science. Since
-              middle school I've been coding. I have feld in love creating fancy
-              things, now I want to learn it all!
+              Lorem, ipsum dolor sit ame consectetur adipisicing elit.
+              Accusamus temporibus doloribus molestiae, laborum quae molestias
+              cum. Ipsum labore nemo ullam excepturi praesentium tempore numquam
+              illum exercitationem, quam perferendis dicta eum.
             </p>
             <div class="buttons">
-              <AwesomeButton text="Skills" border-color="#03a9f4" @wasClicked="scrollIntoView"></AwesomeButton>
-              <AwesomeButton text="Projects" border-color="#f57f17" @wasClicked="scrollIntoView"></AwesomeButton>
               <AwesomeButton
+                text="Skills"
+                border-color="#03a9f4"
+                :transparentBackground="true"
+                @wasClicked="scrollIntoView"
+                :screenSize="screenSize"
+              ></AwesomeButton>
+              <AwesomeButton
+                text="Projects"
+                border-color="#f57f17"
+                :transparentBackground="true"
+                @wasClicked="scrollIntoView"
+                :screenSize="screenSize"
+              ></AwesomeButton>
+              <AwesomeButton
+                :transparentBackground="true"
                 text="Achievements"
                 border-color="#1faa00"
                 @wasClicked="scrollIntoView"
+                :screenSize="screenSize"
               ></AwesomeButton>
             </div>
           </div>
@@ -59,7 +68,8 @@ import AwesomeButton from "../components/LandingPageButton.vue";
 
 export default {
   props: {
-    blur: Boolean
+    blur: Boolean,
+    screenSize: Boolean
   },
   components: {
     VueTyper,
@@ -69,8 +79,26 @@ export default {
     scrollIntoView(name) {
       let container = document.getElementById(name);
       setTimeout(() => {
-        container.scrollIntoView({ behavior: "smooth" });
+        container.scrollIntoView({ behavior: "smooth", alignToTop: false });
       }, 400);
+    }
+  },
+  watch: {
+    screenSize: isMobile => {
+      let section = document.getElementById("about-me");
+      if (isMobile) {
+        section.setAttribute(
+          "style",
+          `animation: initial;
+          opacity: 1;`
+        );
+      } else if (!isMobile) {
+        section.setAttribute(
+          "style",
+          `animation: appearText 1s 2.5s forwards;
+          opacity: 0;`
+        );
+      }
     }
   }
 };
@@ -78,16 +106,17 @@ export default {
 
 <style lang="less">
 #landing-page {
-  transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
   width: 100%;
   height: 100vh;
-
+  min-height: 400px;
+  max-height: 700px;
+  margin: 61px 0 0 0;
   #sketch-holder,
   #sketch-holder2,
   #sketch-holder3 {
     position: absolute;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     opacity: 0.7;
   }
   .i2 {
@@ -100,8 +129,8 @@ export default {
   .leftandright {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     align-items: center;
 
     .profilePicture {
@@ -151,9 +180,6 @@ export default {
     }
   }
 }
-.blur {
-  filter: blur(1px);
-}
 
 //screen sizes
 @wide-screen-down: ~"(max-width: 1199px)";
@@ -165,13 +191,15 @@ export default {
 @media @desktop-down {
   .leftandright {
     grid-template-columns: 1fr !important;
-    grid-template-rows: 1fr 1fr !important;
+    grid-template-rows: 3fr 5fr;
 
     .profilePicture {
-      height: 30vh !important;
-      align-self: center;
+      height: initial !important;
       .roundedBryanImage {
-        height: 30vh;
+        height: 25vh;
+        min-height: 100px;
+        max-height: 200px;
+        margin-top: 25px;
         display: block !important;
       }
       .bryanImage {
@@ -180,27 +208,23 @@ export default {
     }
 
     #about-me {
-      width: 100vw;
+      width: 100%;
+      align-self: start !important;
+
       .buttons {
         display: grid;
         grid-template-columns: auto auto auto;
-        margin: 10px;
+        margin: 20px;
         .btn {
-          padding: 5px 10px !important;
+          padding: 5px 10px;
           text-align: center;
         }
       }
       .box {
-        width: 100vw;
-      }
-      h1 {
-        font-size: 17px;
-      }
-      h3 {
-        font-size: 14px;
-      }
-      p {
-        font-size: 13px;
+        width: 100%;
+        p {
+          line-height: 25px;
+        }
       }
     }
   }

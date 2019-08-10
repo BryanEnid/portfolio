@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <NavigatorBar v-on:navUpdate="blurEverything"></NavigatorBar>
-    <LandingPage :blur="blurState"></LandingPage>
-    <SkillsPage :blur="blurState"></SkillsPage>
-    <ProjectsPage :blur="blurState"></ProjectsPage>
-    <AchievementsPage :blur="blurState"></AchievementsPage>
+    <NavigatorBar v-on:navUpdate="blurEverything" :screenSize="isMobile"></NavigatorBar>
+    <LandingPage :blur="blurState" :screenSize="isMobile"></LandingPage>
+    <SkillsPage :blur="blurState" :screenSize="isMobile"></SkillsPage>
+    <ProjectsPage :blur="blurState" :screenSize="isMobile"></ProjectsPage>
+    <AchievementsPage :blur="blurState" :screenSize="isMobile"></AchievementsPage>
   </div>
 </template>
 
@@ -26,13 +26,20 @@ export default {
   },
   data() {
     return {
-      blurState: false
+      blurState: false,
+      isMobile: false
     };
   },
   methods: {
     blurEverything(navStatus) {
       this.blurState = navStatus;
     }
+  },
+  mounted() {
+    this.isMobile = window.matchMedia("(max-width: 767px)").matches;
+    window.addEventListener("resize", () => {
+      this.isMobile = window.matchMedia("(max-width: 767px)").matches;
+    });
   }
 };
 </script>
@@ -42,14 +49,28 @@ export default {
 </style>
 <style lang="less">
 html {
-  background: #222;
+  background: #252525;
+}
+
+.blur {
+  filter: blur(1px);
+  transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.container {
+  transition: filter 0.5s ease-in-out;
 }
 
 #app {
   margin: 0;
   padding: 0;
-  font-family: "Comfortaa", cursive;
+  font-size: 0.9em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+// apply fonts
+* {
+  font-family: "Comfortaa", cursive;
 }
 </style>

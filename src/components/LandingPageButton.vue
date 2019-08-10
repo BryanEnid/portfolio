@@ -1,5 +1,10 @@
 <template>
-  <div class="btn" :style="style" @click="circleEffect">{{text}}</div>
+  <div
+    class="btn"
+    :style="style"
+    @click="circleEffect"
+    :class="{altAnimationBtn: screenSize}"
+  >{{ text }}</div>
 </template>
 
 <script>
@@ -16,39 +21,59 @@ export default {
     textColor: {
       type: String,
       required: false
+    },
+    transparentBackground: {
+      type: Boolean,
+      required: false
+    },
+    screenSize: {
+      type: Boolean,
+      required: false
     }
   },
   computed: {
     style() {
+      let background = "";
+      if (!this.$props.transparentBackground) {
+        background = this.$props.borderColor;
+      }
       return `
+      background-color: ${background};
       border-color: ${this.$props.borderColor};
       color: ${this.$props.textColor};
+      z-index: 1;
       `;
     }
   },
   methods: {
-    circleEffect({ x, y, target }) {
-      let div = document.createElement("div");
-      div.className = "circleonclick";
+    circleEffect({ x, y, currentTarget }) {
+      if (!this.$props.screenSize) {
+        let div = document.createElement("div");
+        div.className = "circleonclick";
 
-      let randomID = "";
-      let characters = "abcdefghijklmnopqrstuvwxyz";
-      let charactersLength = characters.length;
+        let randomID = "";
+        let characters = "abcdefghijklmnopqrstuvwxyz";
+        let charactersLength = characters.length;
 
-      for (let i = 0; i < 20; i++) {
-        randomID += characters.charAt(
-          Math.floor(Math.random() * charactersLength)
-        );
-      }
-      div.id = randomID;
+        for (let i = 0; i < 20; i++) {
+          randomID += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+          );
+        }
+        div.id = randomID;
 
-      let borderColor = getComputedStyle(target).borderColor;
-      let elemPosition = target.getBoundingClientRect();
-      let left = parseFloat(x - elemPosition.x);
-      let top = parseFloat(y - elemPosition.y);
-      div.setAttribute(
-        "style",
-        `left: ${left}px;
+        let borderColor =
+          getComputedStyle(currentTarget).borderColor ||
+          getComputedStyle(currentTarget)["-moz-border-end-color"] ||
+          getComputedStyle(currentTarget).borderBottomColor;
+
+        let elemPosition = currentTarget.getBoundingClientRect();
+        let left = parseFloat(x - (elemPosition.x || elemPosition.left));
+        let top = parseFloat(y - (elemPosition.y || elemPosition.top));
+
+        div.setAttribute(
+          "style",
+          `left: ${left}px;
         top: ${top}px; 
         background: ${borderColor}; 
         z-index: -1;
@@ -56,14 +81,17 @@ export default {
         width: 4px;
         height: 4px;
         position: absolute;
-        animation: grow 3s forwards;`
-      );
-      target.appendChild(div);
+        animation: grow 3s forwards;
+        filter: brightness(130%);
+        `
+        );
+        currentTarget.appendChild(div);
 
-      setTimeout(() => {
-        let idDOM = document.getElementById(`${randomID}`);
-        target.removeChild(idDOM);
-      }, 2700);
+        setTimeout(() => {
+          let idDOM = document.getElementById(`${randomID}`);
+          currentTarget.removeChild(idDOM);
+        }, 2700);
+      }
 
       this.$emit("wasClicked", this.$props.text);
     }
@@ -89,5 +117,10 @@ export default {
   user-select: none;
 
   transition: background 0.4s;
+}
+
+.altAnimationBtn:active {
+  transition: initial;
+  background: red;
 }
 </style>
