@@ -1,65 +1,85 @@
 <template>
   <div class="container" id="Achievements" :class="{ blur: blur }">
-    <div v-if="screenSize">
-      <h1>Achievements</h1>
-      <header class="instagram">
-        <!-- <img
-          class="logo"
-          src="https://instagram.fatl1-2.fna.fbcdn.net/vp/89d294b248148224d7f62b2a770bcf30/5DCE830F/t51.2885-15/sh0.08/e35/s640x640/12797659_1133362700028483_791283141_n.jpg?_nc_ht=instagram.fatl1-2.fna.fbcdn.net"
-        />-->
-        <div class="logo">
-          <h2>bryanenid</h2>
-          <p>Georgia State University</p>
-        </div>
-      </header>
+    <h1>Achievements</h1>
+
+    <header class="instagram">
+      <div class="userPicture">
+        <h2>bryanenid</h2>
+        <p>Georgia State University</p>
+      </div>
+    </header>
+
+    <div class="instaPictureAndHeartContainer">
+      <icon name="heart" class="instaPictureHeart" color="#D75A4A" v-show="like"></icon>
       <img
+        id="instagramPicture"
         src="https://instagram.fatl1-2.fna.fbcdn.net/vp/20fc91e077287bd55fa969a76f9c212e/5DCBFF8A/t51.2885-15/sh0.08/e35/s640x640/53539954_420380995391655_1470166937302915658_n.jpg?_nc_ht=instagram.fatl1-2.fna.fbcdn.net"
       />
-      <div class="ui">
-        <ul>
-          <icon name="heart" class="icon"></icon>
-        </ul>
-        <div class="description">
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero cumque iusto sapiente architecto soluta harum, aliquam ab perferendis dolorum nemo reiciendis minima reprehenderit. Ab soluta obcaecati vero odio ullam ex.</p>
-        </div>
-        <form>
-          <textarea
-            name="comment"
-            id="comment"
-            placeholder="Add a comment..."
-            aria-label="Add a comment..."
-            wrap="hard"
-            autocomplete="off"
-            autocorrect="off"
-          ></textarea>
-        </form>
-      </div>
     </div>
 
-    <!-- --------------------------------------------------------- -->
-    <!--                    ⇑    IF MOBILE    ⇑                    -->
-    <!-- --------------------------------------------------------- -->
+    <div class="ui">
+      <ul>
+        <icon
+          name="heart"
+          class="heartIcon"
+          color="#D75A4A"
+          @click.native="like = !like"
+          id="instagramUIHeart"
+        ></icon>
+        <li id="counter">0 Likes</li>
+      </ul>
+      <div class="description">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero cumque iusto sapiente architecto soluta harum, aliquam ab perferendis dolorum nemo reiciendis minima reprehenderit. Ab soluta obcaecati vero odio ullam ex.</p>
+      </div>
 
-    <!--                                                           -->
-
-    <!-- --------------------------------------------------------- -->
-    <!--                    ⇓    IF DESKTOP   ⇓                    -->
-    <!-- --------------------------------------------------------- -->
-
-    <div v-else></div>
+      <form>
+        <textarea
+          name="comment"
+          id="comment"
+          placeholder="Add a comment..."
+          aria-label="Add a comment..."
+          wrap="hard"
+          autocomplete="off"
+          autocorrect="off"
+        ></textarea>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 import icon from "../components/AppIcons.vue";
+import { setTimeout } from "timers";
 
 export default {
   props: {
     screenSize: Boolean,
     blur: Boolean
   },
+  data() {
+    return { like: false };
+  },
   components: {
     icon
+  },
+  watch: {
+    like: like => {
+      let instagramUIHeart = document.getElementById("instagramUIHeart");
+      let instaPictureHeart = document.getElementsByClassName(
+        "instaPictureHeart"
+      );
+      instagramUIHeart.classList.toggle("liked", like);
+      instagramUIHeart.classList.toggle("unliked", !like);
+
+      instaPictureHeart[0].classList.toggle("likedBigHeart", like);
+    }
+  },
+  mounted() {
+    let instagramPicture = document.getElementById("instagramPicture");
+
+    instagramPicture.addEventListener("dblclick", () => {
+      this.like = !this.like;
+    });
   }
 };
 </script>
@@ -78,52 +98,239 @@ export default {
 
   #Achievements {
     // height: calc(100vh - 61px);
+    margin-top: 70px;
     background: white;
-    padding: 101px 0 0 0;
-    margin-top: -40px;
+    padding: 41px 0 0 0;
+    border-radius: 10px;
 
-    .logo {
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 3px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    textarea {
+      scrollbar-color: #888 white;
+      scrollbar-width: thin;
+    }
+
+    .userPicture {
       padding: 20px 10px 20px 70px;
       background: #fafafa;
       border-top: 1px solid #e6e6e6;
-    }
 
-    .icon {
-      list-style: none;
-      svg {
-        fill: red;
-        font-size: 20px;
+      h2 {
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+
+      p {
+        font-size: 13px;
+        margin-top: 4px;
       }
     }
 
-    .logo:before {
+    .heartIcon {
+      list-style: none;
+      display: inline;
+      svg {
+        stroke: #d75a4a;
+        stroke-width: 4px;
+        font-size: 25px;
+
+        > * {
+          fill: white;
+          transition: fill 0.1s ease-in-out;
+        }
+      }
+    }
+
+    .instaPictureAndHeartContainer {
+      position: relative;
+      #instagramPicture {
+        object-fit: cover;
+        object-position: 50% 50%;
+        width: 100%;
+      }
+      .instaPictureHeart {
+        pointer-events: none;
+        list-style: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        svg {
+          font-size: 37vw;
+
+          > * {
+            fill: rgba(255, 255, 255, 0.9);
+            transition: fill 0.1s ease-in-out;
+          }
+        }
+      }
+    }
+
+    .liked {
+      svg {
+        -webkit-animation-name: liked; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 0.2s; /* Safari 4.0 - 8.0 */
+        animation-name: liked;
+        animation-duration: 0.2s;
+
+        > * {
+          fill: #d75a4a;
+        }
+      }
+    }
+
+    .unliked {
+      svg {
+        -webkit-animation-name: unliked; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 0.2s; /* Safari 4.0 - 8.0 */
+        animation-name: unliked;
+        animation-duration: 0.2s;
+
+        > * {
+          fill: white;
+        }
+      }
+    }
+
+    @-webkit-keyframes liked {
+      0% {
+        transform: scale(1.3);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes liked {
+      from {
+        transform: scale(1.3);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+    @-webkit-keyframes unliked {
+      0% {
+        transform: scale(1.3);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes unliked {
+      from {
+        transform: scale(1.3);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .likedBigHeart {
+      svg {
+        -webkit-animation-name: likedBigHeart; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 0.2s; /* Safari 4.0 - 8.0 */
+        animation-name: likedBigHeart;
+        animation-duration: 1.2s;
+        animation-fill-mode: forwards;
+      }
+    }
+
+    @-webkit-keyframes likedBigHeart {
+      0% {
+        transform: scale(1.4);
+        opacity: 0.9;
+      }
+      5% {
+        transform: scale(1.6);
+        opacity: 0.9;
+      }
+      60% {
+        transform: scale(1.4);
+        opacity: 0.9;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes likedBigHeart {
+      0% {
+        transform: scale(1.4);
+        opacity: 0.9;
+      }
+      5% {
+        transform: scale(1.6);
+        opacity: 0.9;
+      }
+      60% {
+        transform: scale(1.4);
+        opacity: 0.9;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    .userPicture:before {
       background-size: 50px 50px;
       display: inline-block;
       width: 40px;
       height: 40px;
       border-radius: 50%;
       position: absolute;
-      transform: translateX(calc(-100% - 10px));
+      transform: translate(calc(-100% - 10px), -6px;);
       content: "";
       background-image: url("https://instagram.fatl1-2.fna.fbcdn.net/vp/89d294b248148224d7f62b2a770bcf30/5DCE830F/t51.2885-15/sh0.08/e35/s640x640/12797659_1133362700028483_791283141_n.jpg?_nc_ht=instagram.fatl1-2.fna.fbcdn.net");
-    }
 
-    img {
       object-fit: cover;
       object-position: 50% 50%;
-      width: 100%;
     }
 
     h1 {
       text-align: center;
       margin: 0 0 40px 0;
+      color: #333;
     }
 
     .ui {
       padding: 5px 10px;
+
+      ul * {
+        vertical-align: middle;
+        display: inline;
+      }
+
+      #counter {
+        margin-left: 10px;
+      }
+
       > * {
         margin: 10px;
       }
+      color: #666;
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <NavigatorBar v-on:navUpdate="blurEverything" :screenSize="isMobile"></NavigatorBar>
-    <LandingPage :blur="blurState" :screenSize="isMobile"></LandingPage>
-    <SkillsPage :blur="blurState" :screenSize="isMobile"></SkillsPage>
-    <ProjectsPage :blur="blurState" :screenSize="isMobile"></ProjectsPage>
-    <AchievementsPage :blur="blurState" :screenSize="isMobile"></AchievementsPage>
+    <NavigatorBar v-on:navUpdate="blurEverything" :screenSize="isMobile" :status="menuStatus"></NavigatorBar>
+    <LandingPage :blur="menuStatus" :screenSize="isMobile"></LandingPage>
+    <!-- <SkillsPage :blur="menuStatus" :screenSize="isMobile"></SkillsPage> -->
+    <ProjectsPage :blur="menuStatus" :screenSize="isMobile"></ProjectsPage>
+    <!-- <AchievementsPage :blur="menuStatus" :screenSize="isMobile"></AchievementsPage> -->
   </div>
 </template>
 
@@ -26,13 +26,13 @@ export default {
   },
   data() {
     return {
-      blurState: false,
+      menuStatus: false,
       isMobile: false
     };
   },
   methods: {
-    blurEverything(navStatus) {
-      this.blurState = navStatus;
+    blurEverything(menuStatus) {
+      this.menuStatus = menuStatus;
     }
   },
   mounted() {
@@ -40,6 +40,18 @@ export default {
     window.addEventListener("resize", () => {
       this.isMobile = window.matchMedia("(max-width: 767px)").matches;
     });
+    // let pages = [
+    //   document.getElementById("Landing"),
+    //   document.getElementById("Skills"),
+    //   document.getElementById("Projects"),
+    //   document.getElementById("Achievements")
+    // ];
+
+    // for (let page of pages) {
+    //   page.addEventListener("click", event => {
+    //     this.menuStatus = false;
+    //   });
+    // }
   }
 };
 </script>
@@ -57,16 +69,43 @@ html {
   transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
+.btn,
+.icon {
+  cursor: pointer;
+}
+
 .container {
   transition: filter 0.5s ease-in-out;
 }
 
 #app {
   margin: 0;
-  padding: 0;
+  padding: 0 1px;
   font-size: 0.9em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #252525;
+  width: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #01d8a2;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 // apply fonts

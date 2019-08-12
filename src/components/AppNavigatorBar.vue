@@ -32,7 +32,8 @@ export default {
     icon
   },
   props: {
-    screenSize: Boolean
+    screenSize: Boolean,
+    status: Boolean
   },
   data() {
     return {
@@ -52,8 +53,11 @@ export default {
   },
   watch: {
     //Send a message to parent component to blur siblings through props.
-    isUlVisible: function(isVisible) {
+    isUlVisible(isVisible) {
       this.$emit("navUpdate", isVisible);
+    },
+    status() {
+      this.isUlVisible = this.$props.status;
     }
   }
 };
@@ -61,9 +65,6 @@ export default {
 
 <style lang="less" scopped>
 //Theme
-@backColor: black;
-@contColor: white;
-@itemsInNav: 4;
 
 nav {
   z-index: 2;
@@ -109,7 +110,7 @@ nav {
     > div {
       width: 25px;
       height: 3px;
-      background: @contColor;
+      background: white;
       margin: 5px;
       border-radius: 3px;
     }
@@ -132,14 +133,13 @@ nav {
       //reseting
       list-style: none;
       float: initial;
-      display: none;
 
       //changes
       grid-template-columns: 1fr;
       grid-template-rows: repeat(auto-fill, 1fr);
       height: 100%;
       width: 60%;
-      background: @backColor;
+      background: black;
       position: fixed;
       top: 0;
       right: -60%; //toggle to -3px
@@ -155,7 +155,7 @@ nav {
       a {
         height: 100%;
         li {
-          padding-top: 50vh / @itemsInNav;
+          padding-top: 50vh / 4;
         }
       }
       a:first-child {
@@ -166,7 +166,7 @@ nav {
 
     #burger {
       display: block;
-      background: @backColor;
+      background: black;
       height: 100%;
     }
   }

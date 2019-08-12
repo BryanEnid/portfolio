@@ -1,5 +1,5 @@
 <template>
-  <div id="landing-page" class="container" :class="{ blur: blur }">
+  <div id="Landing" class="container" :class="{ blur: blur }">
     <!-- background -->
     <div v-show="!screenSize" id="sketch-holder3" class="i3" style="z-index: -1;"></div>
     <div v-show="!screenSize" id="sketch-holder2" class="i2" style="z-index: -1;"></div>
@@ -15,7 +15,6 @@
         <div class="box">
           <h1>
             <VueTyper
-              class="hey"
               :text="['Full Stack Dev.', 'Front End Dev.', 'Back End Dev.']"
               :pre-type-delay="400"
               :type-delay="150"
@@ -80,24 +79,18 @@ export default {
       let container = document.getElementById(name);
       setTimeout(() => {
         container.scrollIntoView({ behavior: "smooth", alignToTop: false });
-      }, 400);
+      }, 300);
     }
   },
   watch: {
     screenSize: isMobile => {
-      let section = document.getElementById("about-me");
+      let section = document.getElementById("about-me").style;
       if (isMobile) {
-        section.setAttribute(
-          "style",
-          `animation: initial;
-          opacity: 1;`
-        );
+        section.animation = "initial";
+        section.opacity = "1";
       } else if (!isMobile) {
-        section.setAttribute(
-          "style",
-          `animation: appearText 1s 2.5s forwards;
-          opacity: 0;`
-        );
+        section.animation = "appearText 1s 2.5s forwards";
+        section.opacity = "0";
       }
     }
   }
@@ -105,19 +98,19 @@ export default {
 </script>
 
 <style lang="less">
-#landing-page {
+#Landing {
   width: 100%;
   height: 100vh;
-  min-height: 400px;
-  max-height: 700px;
-  margin: 61px 0 0 0;
+  margin: 0 auto 0 auto;
+  max-width: 1400px;
   #sketch-holder,
   #sketch-holder2,
   #sketch-holder3 {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    opacity: 0.7;
+    height: 100vh;
   }
   .i2 {
     filter: blur(2px);
@@ -161,10 +154,10 @@ export default {
 
       // <Typed.js>
       .custom.char.typed {
-        color: #009688;
+        color: #01d8a2;
       }
       .custom.caret {
-        background: #009688;
+        background: #01d8a2;
       }
       // </Typed.js>
 
@@ -182,13 +175,15 @@ export default {
 }
 
 //screen sizes
-@wide-screen-down: ~"(max-width: 1199px)";
-@desktop-down: ~"(max-width: 991px)";
-@tablet-down: ~"(max-width: 767px)";
-@phone-down: ~"(max-width: 480px)";
-@small-phone-down: ~"(max-width: 320px)";
+@tablet: ~"(max-width: 991px)";
+@phone: ~"(max-width: 767px)";
 
-@media @desktop-down {
+@media @tablet {
+  #Landing {
+    min-height: 400px;
+    max-height: 700px;
+  }
+
   .leftandright {
     grid-template-columns: 1fr !important;
     grid-template-rows: 3fr 5fr;
