@@ -77,17 +77,6 @@ let sketch1 = p => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
     if (p.windowWidth < 700) {
       maximunParticles = 10;
-
-      while (particlesList.length < defaultParticles) {
-        particlesList.push(
-          new Particle(
-            p.random(0, p.windowWidth),
-            p.random(0, p.windowHeight),
-            p.random(...randomnes),
-            p.random(...randomnes)
-          )
-        );
-      }
     } else if (p.windowWidth > 700) {
       maximunParticles = 20;
       while (particlesList.length < defaultParticles) {

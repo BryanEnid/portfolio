@@ -1,11 +1,11 @@
 <template>
   <div class="container" id="Projects" :class="{ blur: blur }">
-    <h1>Projects</h1>
+    <h1>Projects Section</h1>
     <div class="featureProject">
       <img class="cropped" src="../assets/project1.png" />
 
       <div class="techs">
-        <h2>Techs</h2>
+        <h2>Latest Experiment</h2>
         <AwesomeButton text="Node.js" border-color="#333333" text-color="#8cc64c"></AwesomeButton>
         <AwesomeButton text="Express" border-color="black" text-color="white"></AwesomeButton>
         <AwesomeButton text="MongoDB" border-color="#413020" text-color="#76b662"></AwesomeButton>
@@ -14,14 +14,9 @@
         <AwesomeButton text="TypeScript" border-color="#294e80" text-color="white"></AwesomeButton>
       </div>
 
-      <p class="description">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Quas alias similique hic, nihil quos deleniti! Quasi veritatis
-        dignissimos doloremque blanditiis! Velit dignissimos vero, omnis repellat
-        cum ab voluptates totam quas.
-        lore
-        lorem
-      </p>
+      <p
+        class="description"
+      >This is my latest experiment. Is a copy of DoorDash App. I used the Google Web Scrapping Tool (Puppeter), to get real data from their Website, and then save the data to my project's database using MongoDB. The data is served on a REST API. This process repeats every 24 hours to get the updates of DoorDash.com</p>
 
       <div class="demoLinks">
         <AwesomeButton text="Demo" border-color="#20232a" text-color="#61dafb" iconName="react"></AwesomeButton>
@@ -37,16 +32,37 @@
         <li>
           <a href="#">
             <img class="cropped" src="../assets/project2.jpg" alt="#" />
+
+            <ul class="subtechs">
+              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
+              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
+              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
+              <Icon name="javascript" style="background: #f0db4f;"></Icon>
+            </ul>
           </a>
         </li>
         <li>
           <a href="#">
             <img class="cropped" src="../assets/project3.jpg" alt="#" />
+
+            <ul class="subtechs">
+              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
+              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
+              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
+              <Icon name="javascript" style="background: #f0db4f;"></Icon>
+            </ul>
           </a>
         </li>
         <li>
           <a href="#">
             <img class="cropped" src="../assets/project4.png" alt="#" />
+
+            <ul class="subtechs">
+              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
+              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
+              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
+              <Icon name="javascript" style="background: #f0db4f;"></Icon>
+            </ul>
           </a>
         </li>
       </ul>
@@ -55,10 +71,12 @@
 </template>
 
 <script>
+import Icon from "../components/AppIcons.vue";
 import AwesomeButton from "../components/LandingPageButton.vue";
 
 export default {
   components: {
+    Icon,
     AwesomeButton
   },
   props: {
@@ -162,7 +180,7 @@ export default {
       background: #555;
     }
 
-    ul {
+    > ul {
       list-style: none;
       overflow: auto;
       //only safari v5
@@ -172,13 +190,41 @@ export default {
       scrollbar-color: #888 white;
       scrollbar-width: thin;
 
-      li {
+      > li {
         display: inline-block;
         margin: 0 10px;
         // width: 80%;
         width: 350px;
         height: 250px;
         padding: 20px 0;
+        position: relative;
+
+        .subtechs {
+          position: absolute;
+          bottom: 0px;
+          right: 0;
+
+          > li {
+            // margin: 20px;
+            list-style: none;
+            float: left;
+            margin: 3px;
+            border-radius: 50%;
+            padding: 9px 11px;
+            display: inline;
+            font-size: 1.1em;
+          }
+        }
+      }
+
+      > li::before {
+        content: "Details";
+        background: #20232a;
+        position: absolute;
+        padding: 10px 20px;
+        color: white;
+        border-radius: 0 0 10px 0;
+        border: 1px solid #999;
       }
 
       img {
@@ -283,7 +329,7 @@ export default {
         background: #555;
       }
 
-      ul {
+      > ul {
         list-style: none;
         overflow: auto;
         //only safari v5
@@ -293,12 +339,50 @@ export default {
         scrollbar-color: #888 white;
         scrollbar-width: thin;
 
-        li {
+        > li {
           display: inline-block;
           margin: 0 10px;
           width: 80%;
           height: 250px;
           padding: 20px 0;
+          position: relative;
+
+          .subtechs {
+            position: absolute;
+            bottom: 0px;
+            right: 0;
+
+            > li {
+              // margin: 20px;
+              list-style: none;
+              float: left;
+              margin: 3px;
+              border-radius: 50%;
+              padding: 9px 11px;
+              display: block;
+              font-size: 1.1em;
+            }
+          }
+        }
+        img {
+          object-fit: cover;
+          object-position: 50% 50%;
+          width: 100%;
+          height: 100%;
+          border-radius: 3px;
+          border: 1px solid #999;
+        }
+
+        > li::before {
+          content: "Details";
+          background: #20232a;
+          position: absolute;
+          top: 20px;
+          left: 0;
+          padding: 10px 20px;
+          color: white;
+          border-radius: 0 0 10px 0;
+          border: 1px solid #999;
         }
 
         img {

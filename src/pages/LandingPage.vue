@@ -83,7 +83,7 @@ export default {
     }
   },
   watch: {
-    screenSize: isMobile => {
+    screenSize(isMobile) {
       let section = document.getElementById("about-me").style;
       if (isMobile) {
         section.animation = "initial";

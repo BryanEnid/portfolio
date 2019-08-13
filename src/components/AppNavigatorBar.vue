@@ -2,17 +2,14 @@
   <nav>
     <ul id="ulNavigation" :class="{ ulActive: isUlVisible }">
       <a href="https://github.com/BryanEnid" target="_blank">
-        <icon name="github" />
+        <icon name="github" class="github" />
       </a>
       <a href="https://www.linkedin.com/in/bryanenid/" target="_blank">
-        <icon name="linkedin" />
+        <icon name="linkedin" class="linkedin" />
       </a>
       <a href="#">
-        <li>Download Resume</li>
+        <li class="resume">Download Resume</li>
       </a>
-      <!-- <a href="#more">
-        <li>• • •</li>
-      </a>-->
     </ul>
 
     <div id="burger" @click="isUlVisible = !isUlVisible">
@@ -20,6 +17,8 @@
       <div></div>
       <div></div>
     </div>
+
+    <div id="exitMenu" :class="{hidden: !isUlVisible}" @click="isUlVisible = false"></div>
   </nav>
 </template>
 
@@ -50,6 +49,11 @@ export default {
     window.addEventListener("resize", () => {
       this.isUlVisible = false;
     });
+    window.addEventListener("scroll", () => {
+      if (this.isUlVisible) {
+        this.isUlVisible = false;
+      }
+    });
   },
   watch: {
     //Send a message to parent component to blur siblings through props.
@@ -67,17 +71,13 @@ export default {
 //Theme
 
 nav {
-  z-index: 2;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  background: black;
-  border: solid black 1px;
   color: white;
   padding: 0;
-  font-size: 1.1em;
-  opacity: 0.9;
+  font-size: 1.4em;
 
   ul {
     list-style: none;
@@ -89,6 +89,7 @@ nav {
     grid-template-columns: 1fr 1fr 3fr;
     align-items: center;
     text-align: center;
+    opacity: 0.9;
 
     a:visited,
     a {
@@ -100,28 +101,30 @@ nav {
       }
     }
   }
+}
 
-  #burger {
-    display: none;
-    float: right;
-    margin: 15px;
-    cursor: pointer;
+//screen sizes
+@tablet: ~"(max-width: 991px)";
+@mobile: ~"(max-width: 767px)";
 
-    > div {
-      width: 25px;
-      height: 3px;
-      background: white;
-      margin: 5px;
-      border-radius: 3px;
-    }
+@media @mobile {
+  #exitMenu::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: -2;
   }
 
-  //screen sizes
-  @tablet: ~"(max-width: 991px)";
-  @mobile: ~"(max-width: 767px)";
+  .hidden {
+    display: none;
+  }
 
-  @media @mobile {
+  nav {
+    width: initial;
     position: fixed;
+    z-index: 3;
+    right: 0;
 
     //Assign with Javascript
     .ulActive {
@@ -145,12 +148,13 @@ nav {
       right: -60%; //toggle to -3px
       margin: 0;
       padding: 0;
-      z-index: -1;
+      z-index: 3;
       transform: translateX(0%);
 
       transition: 0.5s ease-in-out;
       transition-property: transform;
       will-change: transform;
+      z-index: -1;
 
       a {
         height: 100%;
@@ -165,9 +169,26 @@ nav {
     }
 
     #burger {
+      z-index: 5;
       display: block;
-      background: black;
+      float: right;
+      margin: 15px;
+      cursor: pointer;
       height: 100%;
+      // background: #252525;
+      border-radius: 4px;
+
+      > div {
+        width: 25px;
+        height: 3px;
+        background: white;
+        margin: 5px;
+        border-radius: 3px;
+        transition: 1s ease-in-out;
+      }
+
+      .invert {
+      }
     }
   }
 }

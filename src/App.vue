@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <NavigatorBar v-on:navUpdate="blurEverything" :screenSize="isMobile" :status="menuStatus"></NavigatorBar>
+
     <LandingPage :blur="menuStatus" :screenSize="isMobile"></LandingPage>
-    <!-- <SkillsPage :blur="menuStatus" :screenSize="isMobile"></SkillsPage> -->
+    <SkillsPage :blur="menuStatus" :screenSize="isMobile"></SkillsPage>
     <ProjectsPage :blur="menuStatus" :screenSize="isMobile"></ProjectsPage>
-    <!-- <AchievementsPage :blur="menuStatus" :screenSize="isMobile"></AchievementsPage> -->
+    <AchievementsPage :blur="menuStatus" :screenSize="isMobile"></AchievementsPage>
   </div>
 </template>
 
@@ -40,18 +41,6 @@ export default {
     window.addEventListener("resize", () => {
       this.isMobile = window.matchMedia("(max-width: 767px)").matches;
     });
-    // let pages = [
-    //   document.getElementById("Landing"),
-    //   document.getElementById("Skills"),
-    //   document.getElementById("Projects"),
-    //   document.getElementById("Achievements")
-    // ];
-
-    // for (let page of pages) {
-    //   page.addEventListener("click", event => {
-    //     this.menuStatus = false;
-    //   });
-    // }
   }
 };
 </script>
@@ -60,6 +49,8 @@ export default {
 @import "https://fonts.googleapis.com/css?family=Comfortaa";
 </style>
 <style lang="less">
+@mobile: ~"(max-width: 767px)";
+
 html {
   background: #252525;
 }
@@ -111,5 +102,11 @@ html {
 // apply fonts
 * {
   font-family: "Comfortaa", cursive;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+}
+
+@supports (-ms-accelerator: true) {
 }
 </style>
