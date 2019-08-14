@@ -12,5 +12,7 @@ module.exports = {
   pwa: {
     name: "BryanEnid Website",
     themeColor: "#9B9B9B"
-  }
+  },
+
+  publicPath: process.env.NODE_ENV === "production" ? "/Website2019/" : "/"
 };
