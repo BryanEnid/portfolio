@@ -169,6 +169,15 @@ export default {
 
       .box {
         margin-right: 70px;
+
+        h1 {
+          font-size: 3em;
+        }
+
+        h3,
+        p {
+          font-size: 1.3em;
+        }
       }
     }
   }
@@ -178,7 +187,7 @@ export default {
 @tablet: ~"(max-width: 991px)";
 @phone: ~"(max-width: 767px)";
 
-@media @tablet {
+@media @phone {
   #Landing {
     min-height: 400px;
     max-height: 700px;
@@ -215,10 +224,16 @@ export default {
           text-align: center;
         }
       }
+
       .box {
         width: 100%;
+
         p {
           line-height: 25px;
+          font-size: 1.1em !important;
+        }
+        h1 {
+          font-size: 2em !important;
         }
       }
     }

@@ -5,7 +5,7 @@
       <img class="cropped" src="../assets/project1.png" />
 
       <div class="techs">
-        <h2>Latest Experiment</h2>
+        <h2>Technologies used</h2>
         <AwesomeButton text="Node.js" border-color="#333333" text-color="#8cc64c"></AwesomeButton>
         <AwesomeButton text="Express" border-color="black" text-color="white"></AwesomeButton>
         <AwesomeButton text="MongoDB" border-color="#413020" text-color="#76b662"></AwesomeButton>
@@ -56,6 +56,38 @@
         <li>
           <a href="#">
             <img class="cropped" src="../assets/project4.png" alt="#" />
+
+            <ul class="subtechs">
+              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
+              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
+              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
+              <Icon name="javascript" style="background: #f0db4f;"></Icon>
+            </ul>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img
+              class="cropped"
+              src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kinja-img.com%2Fgawker-media%2Fimage%2Fupload%2Fs--OFJ458Ur--%2Fc_fill%2Cfl_progressive%2Cg_center%2Ch_900%2Cq_80%2Cw_1600%2F17mck7gbhq84kjpg.jpg&f=1"
+              alt="#"
+            />
+
+            <ul class="subtechs">
+              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
+              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
+              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
+              <Icon name="javascript" style="background: #f0db4f;"></Icon>
+            </ul>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img
+              class="cropped"
+              src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwebapps-cdn.softpedia.com%2Fscreenshots%2FDesygner_9.jpg&f=1"
+              alt="#"
+            />
 
             <ul class="subtechs">
               <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
@@ -217,7 +249,7 @@ export default {
         }
       }
 
-      > li::before {
+      > li a::before {
         content: "Details";
         background: #20232a;
         position: absolute;
@@ -373,7 +405,7 @@ export default {
           border: 1px solid #999;
         }
 
-        > li::before {
+        > li a::before {
           content: "Details";
           background: #20232a;
           position: absolute;
