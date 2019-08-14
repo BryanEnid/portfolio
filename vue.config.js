@@ -14,5 +14,5 @@ module.exports = {
     themeColor: "#9B9B9B"
   },
 
-  publicPath: process.env.NODE_ENV === "production" ? "/Website2019/" : "/"
+  publicPath: ""
 };
