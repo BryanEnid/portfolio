@@ -1,107 +1,37 @@
 <template>
   <div class="container" id="Achievements" :class="{ blur: blur }">
+
     <h1>Achievements</h1>
 
-    <header class="instagram">
-      <div class="userPicture">
-        <h2>bryanenid</h2>
-        <p>Georgia State University - PantherHack (Hackathon)</p>
-      </div>
-    </header>
+    <achievement-post
+      loc="Georgia State University - HackGSU Fall 2019"
+      hostLink="https://bryanenid.github.io/doorflash/"
+      githubLink=""
+      devpostLink="https://devpost.com/software/foodisah"
+      imgURL="../assets/ach1.jpg"
+    ></achievement-post>
 
-    <div class="desktop-wrapper">
-      <div class="instaPictureAndHeartContainer">
-        <icon name="heart" class="instaPictureHeart" color="#D75A4A" v-show="like"></icon>
-        <img
-          id="instagramPicture"
-          src="https://instagram.fatl1-2.fna.fbcdn.net/vp/20fc91e077287bd55fa969a76f9c212e/5DCBFF8A/t51.2885-15/sh0.08/e35/s640x640/53539954_420380995391655_1470166937302915658_n.jpg?_nc_ht=instagram.fatl1-2.fna.fbcdn.net"
-        />
-      </div>
+    <achievement-post
+      loc="Georgia State University - PantherHack"
+      hostLink=""
+      githubLink=""
+      devpostLink="https://devpost.com/software/inform-me"
+      imgURL="../assets/ach1.jpg"
+    ></achievement-post>
 
-      <div class="ui">
-        <ul>
-          <icon
-            name="heart"
-            class="heartIcon"
-            color="#D75A4A"
-            @click.native="like = !like"
-            id="instagramUIHeart"
-          ></icon>
-          <li id="counter">0 Likes</li>
-        </ul>
-        <div class="description">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero cumque iusto sapiente architecto soluta harum, aliquam ab perferendis dolorum nemo reiciendis minima reprehenderit. Ab soluta obcaecati vero odio ullam ex.
-            <br />
-            <br />Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam at quo, earum magnam enim odit soluta perspiciatis temporibus, laborum, vero id nulla iusto fugiat obcaecati voluptas corporis incidunt explicabo aliquid?
-          </p>
-        </div>
-
-        <form>
-          <textarea
-            name="comment"
-            id="comment"
-            placeholder="Add a comment..."
-            aria-label="Add a comment..."
-            wrap="hard"
-            autocomplete="off"
-            autocorrect="off"
-          ></textarea>
-        </form>
-
-        <div class="demoLinks">
-          <h2>Check the app</h2>
-          <br />
-          <AwesomeButton
-            text="Demo"
-            border-color="#f0db4f"
-            text-color="black"
-            iconName="javascript"
-            style="font-weight: 800"
-          ></AwesomeButton>
-          <AwesomeButton text="Github" border-color="black" text-color="white" iconName="github"></AwesomeButton>
-          <AwesomeButton text="DEVPOST" border-color="#003e54" text-color="white"></AwesomeButton>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import icon from "../components/AppIcons.vue";
-import { setTimeout } from "timers";
-import AwesomeButton from "../components/LandingPageButton.vue";
+import achievementPost from "../components/AchievementPost.vue";
 
 export default {
   props: {
     screenSize: Boolean,
     blur: Boolean
   },
-  data() {
-    return { like: false };
-  },
   components: {
-    icon,
-    AwesomeButton
-  },
-  watch: {
-    like: like => {
-      let instagramUIHeart = document.getElementById("instagramUIHeart");
-      let instaPictureHeart = document.getElementsByClassName(
-        "instaPictureHeart"
-      );
-      instagramUIHeart.classList.toggle("liked", like);
-      instagramUIHeart.classList.toggle("unliked", !like);
-
-      instaPictureHeart[0].classList.toggle("likedBigHeart", like);
-    }
-  },
-  mounted() {
-    let instagramPicture = document.getElementById("instagramPicture");
-
-    instagramPicture.addEventListener("dblclick", () => {
-      this.like = !this.like;
-    });
+    achievementPost
   }
 };
 </script>
@@ -195,8 +125,9 @@ export default {
       position: relative;
       #instagramPicture {
         object-fit: cover;
-        object-position: 50% 50%;
+        object-position: 100% 50%;
         width: 100%;
+        height: 100%;
       }
       .instaPictureHeart {
         pointer-events: none;
@@ -364,7 +295,7 @@ export default {
     position: absolute;
     transform: translate(calc(-100% - 10px), -6px;);
     content: "";
-    background-image: url("https://instagram.fatl1-2.fna.fbcdn.net/vp/89d294b248148224d7f62b2a770bcf30/5DCE830F/t51.2885-15/sh0.08/e35/s640x640/12797659_1133362700028483_791283141_n.jpg?_nc_ht=instagram.fatl1-2.fna.fbcdn.net");
+    background-image: url("../assets/instProfile.jpg");
 
     object-fit: cover;
     object-position: 50% 50%;

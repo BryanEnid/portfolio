@@ -10,6 +10,10 @@ import icon from "../components/AppIcons.vue";
 
 export default {
   props: {
+    linkto: {
+      type: String,
+      required: false
+    },
     text: {
       type: String,
       required: true
@@ -60,6 +64,7 @@ export default {
   },
   methods: {
     circleEffect({ x, y, currentTarget }) {
+      if (this.$props.linkto.length) window.open(this.$props.linkto)
       if (this.$props.screenSize) {
         currentTarget.style.background = `${this.$props.borderColor}`;
         setTimeout(() => {
