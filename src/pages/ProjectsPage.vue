@@ -14,13 +14,29 @@
         <AwesomeButton text="TypeScript" border-color="#294e80" text-color="white"></AwesomeButton>
       </div>
 
-      <p
-        class="description"
-      >This is my latest experiment. Is a copy of DoorDash App. I used the Google Web Scrapping Tool (Puppeter), to get real data from their Website, and then save the data to my project's database using MongoDB. The data is served on a REST API. This process repeats every 24 hours to get the updates of DoorDash.com</p>
+      <p class="description">
+        This is my latest experiment.
+        Is a copy of DoorDash App. It uses a Google Web Scrapping Tool (Puppeter),
+        to get real data from their Website, and then it saves the data to "Doordash's" project database
+        using MongoDB. The data is served on a REST API. This process repeats every 24 hours
+        to get the updates of DoorDash.com
+      </p>
 
       <div class="demoLinks">
-        <AwesomeButton text="Demo" border-color="#20232a" text-color="#61dafb" iconName="react"></AwesomeButton>
-        <AwesomeButton text="Github" border-color="black" text-color="white" iconName="github"></AwesomeButton>
+        <AwesomeButton
+          text="Demo"
+          border-color="#20232a"
+          text-color="#61dafb"
+          iconName="react"
+          linkto="https://bryanenid.github.io/doorflash/"
+        ></AwesomeButton>
+        <AwesomeButton
+          text="Github"
+          border-color="black"
+          text-color="white"
+          iconName="github"
+          linkto="https://github.com/BryanEnid/doorflash-api/"
+        ></AwesomeButton>
       </div>
     </div>
 
@@ -29,65 +45,10 @@
     <div class="moreProjects">
       <h2>More Projects / Experiments</h2>
       <ul>
+        <!-- remember convert this to a component -->
         <li>
           <a href="#">
-            <img class="cropped" src="../assets/project2.jpg" alt="#" />
-
-            <ul class="subtechs">
-              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
-              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
-              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
-              <Icon name="javascript" style="background: #f0db4f;"></Icon>
-            </ul>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img class="cropped" src="../assets/project3.jpg" alt="#" />
-
-            <ul class="subtechs">
-              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
-              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
-              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
-              <Icon name="javascript" style="background: #f0db4f;"></Icon>
-            </ul>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img class="cropped" src="../assets/project4.png" alt="#" />
-
-            <ul class="subtechs">
-              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
-              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
-              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
-              <Icon name="javascript" style="background: #f0db4f;"></Icon>
-            </ul>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img
-              class="cropped"
-              src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kinja-img.com%2Fgawker-media%2Fimage%2Fupload%2Fs--OFJ458Ur--%2Fc_fill%2Cfl_progressive%2Cg_center%2Ch_900%2Cq_80%2Cw_1600%2F17mck7gbhq84kjpg.jpg&f=1"
-              alt="#"
-            />
-
-            <ul class="subtechs">
-              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
-              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
-              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
-              <Icon name="javascript" style="background: #f0db4f;"></Icon>
-            </ul>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img
-              class="cropped"
-              src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwebapps-cdn.softpedia.com%2Fscreenshots%2FDesygner_9.jpg&f=1"
-              alt="#"
-            />
+            <img class="cropped" src="../assets/project1.png" alt="#" />
 
             <ul class="subtechs">
               <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>

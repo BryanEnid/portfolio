@@ -1,24 +1,22 @@
 <template>
   <div class="container" id="Achievements" :class="{ blur: blur }">
-
     <h1>Achievements</h1>
 
     <achievement-post
       loc="Georgia State University - HackGSU Fall 2019"
       hostLink="https://bryanenid.github.io/doorflash/"
-      githubLink=""
+      githubLink="https://github.com/BryanEnid/doorflash-api/"
       devpostLink="https://devpost.com/software/foodisah"
-      imgURL="../assets/ach1.jpg"
+      img-url="ach2.png"
     ></achievement-post>
 
     <achievement-post
       loc="Georgia State University - PantherHack"
-      hostLink=""
-      githubLink=""
+      hostLink
+      githubLink
       devpostLink="https://devpost.com/software/inform-me"
-      imgURL="../assets/ach1.jpg"
+      img-url="ach1.jpg"
     ></achievement-post>
-
   </div>
 </template>
 
@@ -546,7 +544,7 @@ export default {
       position: absolute;
       transform: translate(calc(-100% - 10px), -6px;);
       content: "";
-      background-image: url("https://instagram.fatl1-2.fna.fbcdn.net/vp/89d294b248148224d7f62b2a770bcf30/5DCE830F/t51.2885-15/sh0.08/e35/s640x640/12797659_1133362700028483_791283141_n.jpg?_nc_ht=instagram.fatl1-2.fna.fbcdn.net");
+      // background-image: url("https://instagram.fatl1-2.fna.fbcdn.net/vp/89d294b248148224d7f62b2a770bcf30/5DCE830F/t51.2885-15/sh0.08/e35/s640x640/12797659_1133362700028483_791283141_n.jpg?_nc_ht=instagram.fatl1-2.fna.fbcdn.net");
 
       object-fit: cover;
       object-position: 50% 50%;

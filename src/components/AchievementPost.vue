@@ -10,8 +10,7 @@
     <div class="desktop-wrapper">
       <div class="instaPictureAndHeartContainer">
         <icon name="heart" class="instaPictureHeart" color="#D75A4A" v-show="like"></icon>
-        <img id="instagramPicture" src="../assets/ach1.jpg" />
-        {{imgURL}}
+        <img id="instagramPicture" :src="require(`../assets/${imgUrl}`)" />
       </div>
 
       <div class="ui">
@@ -47,17 +46,27 @@
         <div class="demoLinks">
           <h2>Check the app</h2>
           <br />
-            <AwesomeButton
-              text="Demo"
-              border-color="#f0db4f"
-              text-color="black"
-              iconName="javascript"
-              style="font-weight: 800"
-              :linkto='hostLink'
-            ></AwesomeButton>
-            <AwesomeButton text="Github" border-color="black" text-color="white" iconName="github" :linkto='githubLink'></AwesomeButton>
-            <AwesomeButton text="DEVPOST" border-color="#003e54" text-color="white" :linkto='devpostLink'></AwesomeButton>
-         
+          <AwesomeButton
+            text="Demo"
+            border-color="#f0db4f"
+            text-color="black"
+            iconName="javascript"
+            style="font-weight: 800"
+            :linkto="hostLink"
+          ></AwesomeButton>
+          <AwesomeButton
+            text="Github"
+            border-color="black"
+            text-color="white"
+            iconName="github"
+            :linkto="githubLink"
+          ></AwesomeButton>
+          <AwesomeButton
+            text="DEVPOST"
+            border-color="#003e54"
+            text-color="white"
+            :linkto="devpostLink"
+          ></AwesomeButton>
         </div>
       </div>
     </div>
@@ -78,7 +87,7 @@ export default {
     hostLink: String,
     githubLink: String,
     devpostLink: String,
-    imgURL: String,
+    imgUrl: String
   },
   data() {
     return { like: false };

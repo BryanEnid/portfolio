@@ -1,9 +1,7 @@
 <template>
   <div id="Landing" class="container" :class="{ blur: blur }">
     <!-- background -->
-    <div v-show="!screenSize" id="sketch-holder3" class="i3" style="z-index: -1;"></div>
-    <div v-show="!screenSize" id="sketch-holder2" class="i2" style="z-index: -1;"></div>
-    <div id="sketch-holder" style="z-index: -1;"></div>
+    <canvas v-for="name of canvas" :key="name.id" :id="name"></canvas>
 
     <div class="leftandright">
       <div class="profilePicture">
@@ -14,14 +12,14 @@
       <div id="about-me">
         <div class="box">
           <h1>
-            <VueTyper
+            <!-- <VueTyper
               :text="['Full Stack Dev.', 'Front End Dev.', 'Back End Dev.']"
               :pre-type-delay="400"
               :type-delay="150"
               :pre-erase-delay="4000"
               erase-style="backspace"
               :erase-delay="70"
-            ></VueTyper>
+            ></VueTyper>-->
           </h1>
           <div>
             <h3>Bryan E. Tejada</h3>
@@ -64,15 +62,41 @@
 <script>
 import { VueTyper } from "vue-typer";
 import AwesomeButton from "../components/LandingPageButton.vue";
+import ParticleNetwork from "../modules/Particle_Network.js";
 
 export default {
   props: {
     blur: Boolean,
     screenSize: Boolean
   },
+  data() {
+    return {
+      canvas: ["sketch-holder", "sketch-holder2", "sketch-holder3"]
+    };
+  },
   components: {
     VueTyper,
     AwesomeButton
+  },
+  mounted() {
+    for (name of this.canvas) {
+      if (name == this.canvas[0]) {
+        let config = {
+          DOM_CANVAS_NAME: name,
+          mouseDetection: true
+        };
+        let particle_network = new ParticleNetwork(config);
+        particle_network.start();
+      } else {
+        let config = {
+          DOM_CANVAS_NAME: name,
+          mouseDetection: false,
+          blur: true
+        };
+        let particle_network = new ParticleNetwork(config);
+        particle_network.start();
+      }
+    }
   },
   methods: {
     scrollIntoView(name) {
@@ -86,9 +110,21 @@ export default {
     screenSize(isMobile) {
       let section = document.getElementById("about-me").style;
       if (isMobile) {
+        for (let canvasName of this.canvas) {
+          if (canvasName != this.canvas[0]) {
+            let canvas = document.getElementById(canvasName);
+            canvas.style.display = "none";
+          }
+        }
         section.animation = "initial";
         section.opacity = "1";
       } else if (!isMobile) {
+        for (let canvasName of this.canvas) {
+          if (canvasName != this.canvas[0]) {
+            let canvas = document.getElementById(canvasName);
+            canvas.style.display = "block";
+          }
+        }
         section.animation = "appearText 1s 2.5s forwards";
         section.opacity = "0";
       }
@@ -112,11 +148,10 @@ export default {
     width: 100%;
     height: 100vh;
   }
-  .i2 {
-    filter: blur(2px);
-  }
-  .i3 {
-    filter: blur(3px);
+
+  #sketch-holder2,
+  #sketch-holder3 {
+    z-index: -1;
   }
 
   .leftandright {
@@ -131,6 +166,12 @@ export default {
       height: 80vh;
       align-self: end;
       margin: 0 auto;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none;
 
       .bryanImage {
         height: 80vh;
@@ -151,7 +192,12 @@ export default {
       grid-template-columns: 1fr;
       opacity: 0;
       animation: appearText 1s 2.5s forwards;
-
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none;
       // <Typed.js>
       .custom.char.typed {
         color: #01d8a2;

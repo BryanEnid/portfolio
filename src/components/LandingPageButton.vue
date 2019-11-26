@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     circleEffect({ x, y, currentTarget }) {
-      if (this.$props.linkto.length) window.open(this.$props.linkto)
       if (this.$props.screenSize) {
         currentTarget.style.background = `${this.$props.borderColor}`;
         setTimeout(() => {
@@ -113,6 +112,10 @@ export default {
           let idDOM = document.getElementById(`${randomID}`);
           currentTarget.removeChild(idDOM);
         }, 2700);
+
+        setTimeout(() => {
+          if (this.$props.linkto) window.open(this.$props.linkto);
+        }, 500);
       }
 
       this.$emit("wasClicked", this.$props.text);

@@ -78,6 +78,7 @@ nav {
   color: white;
   padding: 0;
   font-size: 1.4em;
+  z-index: 1;
 
   ul {
     list-style: none;
