@@ -11,7 +11,7 @@ export default class ParticleNetwork {
         this.DOM_CANVAS_NAME = DOM_CANVAS_NAME
         this.clickDetection = false;
         this.particlesList = [];
-        this.defaultParticles = 25;
+        this.defaultParticles = 50;
         this.maximunParticles = 200;
         this.maximunParticlesSetup = this.maximunParticles
         this.maximunParticlesSetupMinimunRange = Math.floor(this.maximunParticles / 3);
@@ -63,11 +63,14 @@ export default class ParticleNetwork {
             })
         }
         window.addEventListener("resize", () => {
-            let { random } = this.LIBRARY_FUNCTIONS
             this.width = window.innerWidth
             this.height = window.innerHeight
-            this.canvas.width = window.innerWidth
-            this.canvas.height = window.innerHeight
+
+            this.canvas.style.width = '100vw'
+            this.canvas.style.height = '99.2vh'
+            this.canvas.width = window.innerWidth * scale;
+            this.canvas.height = (window.innerHeight * scale);
+            this.ctx.scale(scale, scale)
         })
 
         this.setup(this.LIBRARY_FUNCTIONS);
