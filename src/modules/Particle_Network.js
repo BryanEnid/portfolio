@@ -51,8 +51,8 @@ export default class ParticleNetwork {
         this.ctx.scale(scale, scale)
 
         if (this.mouseDetection) {
-            this.canvas.addEventListener("mousemove", ({ x, y }) => {
-                this.mousePosition = { x: x, y: y }
+            this.canvas.addEventListener("mousemove", ({ layerX, layerY }) => {
+                this.mousePosition = { x: layerX, y: layerY }
                 this.mouseDetection = true
             })
             this.canvas.addEventListener("mouseout", (e) => {
@@ -71,6 +71,8 @@ export default class ParticleNetwork {
             this.canvas.width = window.innerWidth * scale;
             this.canvas.height = (window.innerHeight * scale);
             this.ctx.scale(scale, scale)
+
+            // this.particlesList.splice(0, this.particlesList.length)
         })
 
         this.setup(this.LIBRARY_FUNCTIONS);
