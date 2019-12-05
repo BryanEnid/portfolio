@@ -16,7 +16,7 @@
 
       <p class="description">
         This is my latest experiment. (Still playing around with it)
-        Actually it only display all the food from doordash but my initial idea was compare prices between all deliveries app. It uses a Google Web Scrapping Tool (Puppeter),
+        Actually, it only display all the food from doordash but my initial idea was compare prices between all deliveries app. It uses a Google Web Scrapping Tool (Puppeter),
         The data is served on a REST API. The scrapping takes 10 minutes and it repeats every 24 hours so it can have updated data.
       </p>
 
@@ -59,10 +59,19 @@
       </ul>
     </div>
 
-    <div class="moreProjects" v-if="experiments.length != 0">
+    <p
+      style="text-align:center; margin:40px 0 0 0"
+    >At this moment I'm uploading projects to Github, shortly they will be listed on this website</p>
+    <p style="text-align:center; margin:40px 0 0 0">
+      Please check my github:
+      <a href="https://github.com/BryanEnid/">https://github.com/BryanEnid/</a>
+    </p>
+
+    <!-- remember convert this to a component -->
+    <!-- <div class="moreProjects" v-if="experiments.length != 0">
       <h2>Experiments</h2>
       <ul>
-        <!-- remember convert this to a component -->
+        
         <li>
           <a href="#">
             <img class="cropped" src="../assets/project1.png" alt="#" />
@@ -76,7 +85,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -109,7 +118,7 @@ export default {
 #Projects {
   background: white;
   border-radius: 10px;
-  padding: 10px 0;
+  padding: 10px 0 60px 0;
   max-width: 1200px;
   margin: 0 auto;
 

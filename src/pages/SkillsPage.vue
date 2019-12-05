@@ -4,7 +4,14 @@
 
     <div class="moreSkills">
       <ul>
-        <template v-for="techs of technologies">
+        <template v-for="techs of technologies1">
+          <icon :name="techs[0]" :color="techs[1]" size="initial" :showName="true" :key="techs"></icon>
+        </template>
+      </ul>
+    </div>
+    <div class="moreSkills">
+      <ul>
+        <template v-for="techs of technologies2">
           <icon :name="techs[0]" :color="techs[1]" size="initial" :showName="true" :key="techs"></icon>
         </template>
       </ul>
@@ -21,16 +28,39 @@ export default {
   },
   data() {
     return {
-      technologies: [
+      technologies1: [
+        // Js
+        ["Javascript", ""],
+        ["Typescript", "#1a5cce"],
         ["React.js", "#61dafb"],
         ["Vue.js", ""],
-        ["Node.js", ""],
+
+        ["JQuery", ""],
+
+        // html
         ["HTML", ""],
         ["CSS", ""],
-        ["Javascript", ""],
+        ["SASS", ""],
+        ["LESS", ""],
+        ["Bootstrap", ""],
+        ["p5.js", ""]
+      ],
+      technologies2: [
+        // Back End
+        ["Node.js", ""],
+        ["Java", ""],
+        ["Python", ""],
+
+        // DB
+        ["MongoDB", "#2ba03e"],
         ["Firebase", ""],
-        ["JQuery", ""],
-        ["PostgreSQL", ""]
+        ["PostgreSQL", ""],
+
+        // Extras
+        ["Docker", ""],
+        ["NGINX", "#2ba03e"],
+        ["Github", "black"],
+        ["Linux", ""]
       ]
     };
   },
@@ -84,8 +114,7 @@ export default {
     margin: 10px 0;
 
     ::-webkit-scrollbar {
-      width: 10px;
-      height: 5px;
+      height: 10px;
     }
 
     /* Track */
@@ -96,7 +125,7 @@ export default {
     /* Handle */
     ::-webkit-scrollbar-thumb {
       background: #888;
-      border-radius: 3px;
+      border-radius: 7px;
     }
 
     /* Handle on hover */
@@ -107,6 +136,9 @@ export default {
     > ul {
       list-style: none;
       overflow: auto;
+
+      max-width: 1100px;
+      margin: 0 auto;
       //only safari v5
       -webkit-overflow-scrolling: touch;
       white-space: nowrap;

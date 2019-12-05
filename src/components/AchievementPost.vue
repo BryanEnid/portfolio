@@ -35,10 +35,9 @@
           <li id="counter">0 Likes</li>
         </ul>
         <div class="description">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero cumque iusto sapiente architecto soluta harum, aliquam ab perferendis dolorum nemo reiciendis minima reprehenderit. Ab soluta obcaecati vero odio ullam ex.
-            <br />
-            <br />Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam at quo, earum magnam enim odit soluta perspiciatis temporibus, laborum, vero id nulla iusto fugiat obcaecati voluptas corporis incidunt explicabo aliquid?
+          {{ description }}
+          <p style="margin: 10px 0;">
+            <a :href="post">See Post in Instagram</a>
           </p>
         </div>
 
@@ -101,7 +100,9 @@ export default {
     hostLink: String,
     githubLink: String,
     devpostLink: String,
-    imgUrl: String
+    imgUrl: String,
+    description: String,
+    post: String
   },
   data() {
     return { like: false, default: true };

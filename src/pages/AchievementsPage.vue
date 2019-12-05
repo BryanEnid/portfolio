@@ -8,6 +8,8 @@
       githubLink="https://github.com/BryanEnid/doorflash-api/"
       devpostLink="https://devpost.com/software/foodisah"
       img-url="ach2.png"
+      description="Another hackathon #hackgsu getting prepared to win this time."
+      post="https://www.instagram.com/p/BvnM93agI-M/"
     ></achievement-post>
 
     <achievement-post
@@ -16,6 +18,8 @@
       githubLink
       devpostLink="https://devpost.com/software/inform-me"
       img-url="ach1.jpg"
+      description="Segundo lugar!!!! Solo por un punto 🤣🤣🤣. Seguiré intentando! Pero nosotros sabemos que ganamos mucho más. Fueron unos dos días seguidos sin dormir muy duros. Nosotros estábamos apuntando al primer lugar y casi lo logramos. Estoy orgulloso de ustedes y de mi mismo. Thanks everybody! Y Nos vemos en dos semanas otra vez pero ahora en #hackgsu !"
+      post="https://www.instagram.com/p/Bu3jIIigaCy/"
     ></achievement-post>
   </div>
 </template>

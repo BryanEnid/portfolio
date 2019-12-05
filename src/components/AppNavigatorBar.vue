@@ -2,10 +2,10 @@
   <nav>
     <ul id="ulNavigation" :class="{ ulActive: isUlVisible }">
       <a href="https://github.com/BryanEnid" target="_blank">
-        <icon name="github" class="github" />
+        <icon name="github" class="github" size="30%" />
       </a>
       <a href="https://www.linkedin.com/in/bryanenid/" target="_blank">
-        <icon name="linkedin" class="linkedin" />
+        <icon name="linkedin" class="linkedin" size="30%" />
       </a>
       <a href="#">
         <li class="resume">Download Resume</li>
