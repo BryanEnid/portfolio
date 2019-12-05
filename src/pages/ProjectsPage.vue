@@ -15,11 +15,9 @@
       </div>
 
       <p class="description">
-        This is my latest experiment.
-        Is a copy of DoorDash App. It uses a Google Web Scrapping Tool (Puppeter),
-        to get real data from their Website, and then it saves the data to "Doordash's" project database
-        using MongoDB. The data is served on a REST API. This process repeats every 24 hours
-        to get the updates of DoorDash.com
+        This is my latest experiment. (Still playing around with it)
+        Actually it only display all the food from doordash but my initial idea was compare prices between all deliveries app. It uses a Google Web Scrapping Tool (Puppeter),
+        The data is served on a REST API. The scrapping takes 10 minutes and it repeats every 24 hours so it can have updated data.
       </p>
 
       <div class="demoLinks">
@@ -28,7 +26,7 @@
           border-color="#20232a"
           text-color="#61dafb"
           iconName="react"
-          linkto="https://bryanenid.github.io/doorflash/"
+          linkto="/doorflash/"
         ></AwesomeButton>
         <AwesomeButton
           text="Github"
@@ -42,8 +40,27 @@
 
     <hr />
 
-    <div class="moreProjects">
-      <h2>More Projects / Experiments</h2>
+    <div class="moreProjects" v-if="projects.length != 0">
+      <h2>Projects</h2>
+      <ul>
+        <!-- remember convert this to a component -->
+        <li>
+          <a href="#">
+            <img class="cropped" src="../assets/project1.png" alt="#" />
+
+            <ul class="subtechs">
+              <Icon name="react" color="#61dafb" style="background: #20232a;"></Icon>
+              <Icon name="vue" style="background: white; border: 1px solid #41b883;"></Icon>
+              <Icon name="node" color="#61dafb" style="background: #333333;"></Icon>
+              <Icon name="javascript" style="background: #f0db4f;"></Icon>
+            </ul>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="moreProjects" v-if="experiments.length != 0">
+      <h2>Experiments</h2>
       <ul>
         <!-- remember convert this to a component -->
         <li>
@@ -77,7 +94,10 @@ export default {
     screenSize: Boolean
   },
   data() {
-    return {};
+    return {
+      projects: [],
+      experiments: [{}]
+    };
   }
 };
 </script>

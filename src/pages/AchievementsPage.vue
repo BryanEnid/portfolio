@@ -121,7 +121,7 @@ export default {
     .instaPictureAndHeartContainer {
       grid-area: instainsta;
       position: relative;
-      #instagramPicture {
+      .instagramPicture {
         object-fit: cover;
         object-position: 100% 50%;
         width: 100%;
@@ -385,7 +385,7 @@ export default {
       display: initial;
       .instaPictureAndHeartContainer {
         position: relative;
-        #instagramPicture {
+        .instagramPicture {
           object-fit: cover;
           object-position: 50% 50%;
           width: 100%;

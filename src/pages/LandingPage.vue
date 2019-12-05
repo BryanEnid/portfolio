@@ -11,24 +11,8 @@
 
       <div id="about-me">
         <div class="box">
-          <h1>
-            <!-- <VueTyper
-              :text="['Full Stack Dev.', 'Front End Dev.', 'Back End Dev.']"
-              :pre-type-delay="400"
-              :type-delay="150"
-              :pre-erase-delay="4000"
-              erase-style="backspace"
-              :erase-delay="70"
-            ></VueTyper>-->
-          </h1>
           <div>
-            <h3>Bryan E. Tejada</h3>
-            <p>
-              Lorem, ipsum dolor sit ame consectetur adipisicing elit.
-              Accusamus temporibus doloribus molestiae, laborum quae molestias
-              cum. Ipsum labore nemo ullam excepturi praesentium tempore numquam
-              illum exercitationem, quam perferendis dicta eum.
-            </p>
+            <div class="typer"></div>
             <div class="buttons">
               <AwesomeButton
                 text="Skills"
@@ -61,6 +45,8 @@
 
 <script>
 import { VueTyper } from "vue-typer";
+import typer from "typer-js";
+// change to TYPER.js
 import AwesomeButton from "../components/LandingPageButton.vue";
 import ParticleNetwork from "../modules/Particle_Network.js";
 
@@ -97,6 +83,40 @@ export default {
         particle_network.start();
       }
     }
+
+    typer(".typer")
+      .line("Hello! My name is Bryan E. Tejada", { element: "p", speed: 90 })
+      .pause(1000)
+      .line("I'm a Front End Developer.", { element: "p", speed: 50 })
+      .pause(1300)
+      .continue(["      well ..."])
+      .pause(500)
+      .back(34, 2)
+      .continue("Back End Developer.")
+      .pause(1200)
+      .continue(["      um ..."])
+      .pause(1200)
+      .back(31, 2)
+      .continue("Full Stack Developer")
+      .pause(1000)
+      .continue(" ?")
+      .pause(2000)
+      .back(2)
+      .pause(1000)
+      .continue(".")
+      .pause(1000)
+      .continue(["  anyway ..."])
+      .pause(500)
+      .back(10, 10)
+      .line(["Please, check out my skills, projects, and achievements!"], {
+        element: "p"
+      })
+      .line(
+        [
+          "Also, please download my resume. It's in the menu at the upper right corner, and thank you for having a look at my portfolio."
+        ],
+        { element: "p" }
+      );
   },
   methods: {
     scrollIntoView(name) {
@@ -145,8 +165,6 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
   }
 
   #sketch-holder2,
