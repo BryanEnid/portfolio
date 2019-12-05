@@ -11,6 +11,7 @@
     "core-js": "^3.4.2",
     "p5": "^0.10.2",
     "register-service-worker": "^1.6.2",
+    "typer-js": "^5.0.2",
     "vue": "^2.6.10",
     "vue-typer": "^1.2.0"
   },
