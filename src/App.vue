@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavigatorBar v-on:navUpdate="blurEverything" :screenSize="isMobile" :status="menuStatus"></NavigatorBar>
+    <NavigatorBar v-on:navUpdate="'blurEverything'" :screenSize="isMobile" :status="menuStatus"></NavigatorBar>
 
     <LandingPage :blur="menuStatus" :screenSize="isMobile"></LandingPage>
     <SkillsPage :blur="menuStatus" :screenSize="isMobile"></SkillsPage>
