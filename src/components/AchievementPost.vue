@@ -9,17 +9,28 @@
 
     <div class="desktop-wrapper">
       <div class="instaPictureAndHeartContainer">
-        <icon name="heart" class="instaPictureHeart" color="#D75A4A" v-show="like"></icon>
-        <img id="instagramPicture" :src="require(`../assets/${imgUrl}`)" />
+        <icon
+          name="heart"
+          class="instaPictureHeart"
+          :class="{likedBigHeart: like}"
+          color="#D75A4A"
+          v-show="like"
+        ></icon>
+        <img
+          class="instagramPicture"
+          :src="require(`../assets/${imgUrl}`)"
+          @dblclick="like = !like"
+        />
       </div>
 
       <div class="ui">
         <ul>
           <icon
             name="heart"
+            :class="{liked: like, unliked: !like}"
             class="heartIcon instagramUIHeart"
             color="#D75A4A"
-            @click.native="likeUI"
+            @click.native="like = !like"
           ></icon>
           <li id="counter">0 Likes</li>
         </ul>
@@ -47,6 +58,7 @@
           <h2>Check the app</h2>
           <br />
           <AwesomeButton
+            v-if="hostLink"
             text="Demo"
             border-color="#f0db4f"
             text-color="black"
@@ -55,6 +67,7 @@
             :linkto="hostLink"
           ></AwesomeButton>
           <AwesomeButton
+            v-if="githubLink"
             text="Github"
             border-color="black"
             text-color="white"
@@ -62,6 +75,7 @@
             :linkto="githubLink"
           ></AwesomeButton>
           <AwesomeButton
+            v-if="devpostLink"
             text="DEVPOST"
             border-color="#003e54"
             text-color="white"
@@ -90,32 +104,11 @@ export default {
     imgUrl: String
   },
   data() {
-    return { like: false };
+    return { like: false, default: true };
   },
   components: {
     icon,
     AwesomeButton
-  },
-  methods: {
-    likeUI: function(e) {
-      this.like = !this.like;
-      let instagramUIHeart = e.path[5].getElementsByClassName(
-        "instagramUIHeart"
-      )[0];
-      let instaPictureHeart = e.path[5].getElementsByClassName(
-        "instaPictureHeart"
-      )[0];
-      instagramUIHeart.classList.toggle("liked", this.like);
-      instagramUIHeart.classList.toggle("unliked", !this.like);
-      instaPictureHeart.classList.toggle("likedBigHeart", this.like);
-    }
-  },
-  mounted() {
-    let instagramPicture = document.getElementById("instagramPicture");
-
-    instagramPicture.addEventListener("dblclick", () => {
-      this.like = !this.like;
-    });
   }
 };
 </script>
