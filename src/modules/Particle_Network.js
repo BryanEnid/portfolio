@@ -1,9 +1,29 @@
 import LagHandler from "./LagHandler.js"
 import Particle from "./Particles.js"
+// Opera 8.0+
+var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
+// Firefox 1.0+
+var isFirefox = typeof InstallTrigger !== 'undefined';
+
+// Safari 3.0+ "[object HTMLElementConstructor]" 
+var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+
+// Internet Explorer 6-11
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+// Edge 20+
+var isEdge = !isIE && !!window.StyleMedia;
+
+// Chrome 1 - 71
+var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
+// Blink engine detection
+var isBlink = (isChrome || isOpera) && !!window.CSS;
 let lag = new LagHandler();
 
 export default class ParticleNetwork {
+
     constructor({ mouseDetection, DOM_CANVAS_NAME, blur }) {
         let canvas = document.getElementById(DOM_CANVAS_NAME);
         this.canvas = canvas;
@@ -12,9 +32,9 @@ export default class ParticleNetwork {
         this.clickDetection = false;
         this.particlesList = [];
         this.defaultParticles = 50;
-        this.maximunParticles = 200;
+        this.maximunParticles = 80;
         this.maximunParticlesSetup = this.maximunParticles
-        this.maximunParticlesSetupMinimunRange = Math.floor(this.maximunParticles / 3);
+        this.maximunParticlesSetupMinimunRange = Math.floor(this.maximunParticles / 6);
         this.intervalVelocity = 0.3;
         this.width = window.innerWidth
         this.height = window.innerHeight
@@ -79,8 +99,7 @@ export default class ParticleNetwork {
         this.draw(this.LIBRARY_FUNCTIONS);
     }
 
-    // Game functions
-    // Here goes the pre setup of the game 
+
     setup({ random }) {
         if (this.width < 700) {
             this.maximunParticles = this.maximunParticlesSetupMinimunRange;
@@ -116,6 +135,12 @@ export default class ParticleNetwork {
             this.maximunParticles = Math.floor(this.maximunParticles * 0.9);
             lag.reset()
         } else if (lag.memory == 0) {
+            this.maximunParticles = this.maximunParticlesSetup;
+        }
+
+        if (this.width < 700) {
+            this.maximunParticles = this.maximunParticlesSetupMinimunRange;
+        } else if (this.width > 700) {
             this.maximunParticles = this.maximunParticlesSetup;
         }
 
