@@ -2,9 +2,11 @@
   "name": "website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://bryanenid.github.io",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@vue/cli": "^4.0.5",
