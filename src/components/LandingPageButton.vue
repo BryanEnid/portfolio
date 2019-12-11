@@ -45,14 +45,19 @@ export default {
   computed: {
     style() {
       let background = "";
+      let cursor = "default";
       if (!this.$props.transparentBackground) {
         background = this.$props.borderColor;
+      }
+      if (this.$props.linkto) {
+        cursor = "pointer";
       }
       return `
       background-color: ${background};
       border-color: ${this.$props.borderColor};
       color: ${this.$props.textColor};
       z-index: 1;
+      cursor: ${cursor}; 
       `;
     },
     getIconName() {
@@ -114,7 +119,7 @@ export default {
         }, 2700);
 
         setTimeout(() => {
-          if (this.$props.linkto) window.open(this.$props.linkto);
+          if (this.$props.linkto && this.$props.linkto != "#") window.open(this.$props.linkto);
         }, 500);
       }
 
