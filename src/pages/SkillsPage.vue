@@ -60,7 +60,8 @@ export default {
         ["Docker", ""],
         ["NGINX", "#2ba03e"],
         ["Github", "black"],
-        ["Linux", ""]
+        ["Linux", ""],
+        ["Web Scraping", ""]
       ]
     };
   },
@@ -96,23 +97,7 @@ export default {
     display: block;
   }
 
-  .cropped {
-    grid-area: initial;
-    object-fit: cover;
-    object-position: 50% 50%;
-    border-radius: initial !important;
-
-    width: 100%;
-    height: 100%;
-
-    display: block;
-    margin: 0 auto 20px auto;
-  }
-
-  .moreSkills {
-    text-align: center;
-    margin: 10px 0;
-
+  .moreSkills:hover {
     ::-webkit-scrollbar {
       height: 10px;
     }
@@ -132,6 +117,31 @@ export default {
     ::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
+  }
+
+  .moreSkills {
+    text-align: center;
+    margin: 10px 0;
+
+    ::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: white;
+      border-radius: 7px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: white;
+    }
 
     > ul {
       list-style: none;
@@ -139,14 +149,16 @@ export default {
 
       max-width: 1100px;
       margin: 0 auto;
-      //only safari v5
       -webkit-overflow-scrolling: touch;
-      white-space: nowrap;
+      scroll-snap-type: x mandatory;
 
       scrollbar-color: #888 white;
       scrollbar-width: thin;
 
+      white-space: nowrap;
+
       > li {
+        scroll-snap-align: start;
         display: inline-block;
         margin: 0 10px;
         // width: 80%;
@@ -154,23 +166,11 @@ export default {
         height: 100px;
         padding: 20px 0;
         position: relative;
+        cursor: default;
+      }
 
-        .subtechs {
-          position: absolute;
-          bottom: 0px;
-          right: 0;
-
-          > li {
-            // margin: 20px;
-            list-style: none;
-            float: left;
-            margin: 3px;
-            border-radius: 50%;
-            padding: 9px 11px;
-            display: inline;
-            font-size: 1.1em;
-          }
-        }
+      p {
+        white-space: initial;
       }
     }
   }
@@ -178,17 +178,9 @@ export default {
 
 @media @phone {
   #Skills {
-    background: white;
-    // border-radius: 10px;
-    display: block;
-    margin: 123px auto 40px auto;
-
-    .moreSkills {
-      text-align: center;
-
+    .moreSkills:hover {
       ::-webkit-scrollbar {
-        width: 10px;
-        height: 5px;
+        height: 0px;
       }
 
       /* Track */
@@ -198,18 +190,25 @@ export default {
 
       /* Handle */
       ::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 3px;
+        background: white;
+        border-radius: 0px;
       }
 
       /* Handle on hover */
       ::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: white;
+      }
+    }
+    .moreSkills {
+      text-align: center;
+
+      ::-webkit-scrollbar {
+        height: 0px;
       }
 
       > ul {
         list-style: none;
-        overflow: auto;
+        // overflow: auto;
         //only safari v5
         -webkit-overflow-scrolling: touch;
         white-space: nowrap;

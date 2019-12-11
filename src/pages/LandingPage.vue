@@ -20,6 +20,7 @@
                 :transparentBackground="true"
                 @wasClicked="scrollIntoView"
                 :screenSize="screenSize"
+                linkto="#"
               ></AwesomeButton>
               <AwesomeButton
                 text="Projects"
@@ -27,6 +28,7 @@
                 :transparentBackground="true"
                 @wasClicked="scrollIntoView"
                 :screenSize="screenSize"
+                linkto="#"
               ></AwesomeButton>
               <AwesomeButton
                 :transparentBackground="true"
@@ -34,6 +36,7 @@
                 border-color="#1faa00"
                 @wasClicked="scrollIntoView"
                 :screenSize="screenSize"
+                linkto="#"
               ></AwesomeButton>
             </div>
           </div>
@@ -108,14 +111,14 @@ export default {
       .continue(["  anyway ..."])
       .pause(500)
       .back(10, 10)
+      .line(["Please, check out my skills, projects, and achievements!"], {
+        element: "p"
+      })
       .line(
         [
-          "Please, check out my skills, projects, and achievements!",
           "Also, please download my resume. It's in the menu at the upper right corner, and thank you for having a look at my portfolio."
         ],
-        {
-          element: "p"
-        }
+        { element: "p" }
       );
   },
   methods: {
