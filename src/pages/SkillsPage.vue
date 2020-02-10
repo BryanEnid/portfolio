@@ -59,7 +59,7 @@ export default {
         // Extras
         ["Docker", ""],
         ["NGINX", "#2ba03e"],
-        ["Github", "black"],
+        ["Flutter", "black"],
         ["Linux", ""],
         ["Web Scraping", ""]
       ]
