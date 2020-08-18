@@ -5,14 +5,14 @@ module.exports = {
     devServer: {
       before(app) {
         app.use("/__open-in-editor", launchMiddleware());
-      }
-    }
+      },
+    },
   },
 
   pwa: {
     name: "BryanEnid Website",
-    themeColor: "#9B9B9B"
+    themeColor: "#9B9B9B",
   },
 
-  publicPath: ""
+  publicPath: process.env.NODE_ENV === "production" ? "/my-project/" : "/",
 };

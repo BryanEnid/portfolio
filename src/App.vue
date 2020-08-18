@@ -4,6 +4,7 @@
       v-on:navUpdate="
         'blurEverything';
 
+
       "
       :screenSize="isMobile"
       :status="menuStatus"
@@ -60,6 +61,7 @@ export default {
 
 html {
   background: #252525;
+  overflow-x: hidden;
 }
 
 .blur {

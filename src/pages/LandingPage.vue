@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { VueTyper } from "vue-typer";
 import typer from "typer-js";
 // change to TYPER.js
 import AwesomeButton from "../components/LandingPageButton.vue";
@@ -64,7 +63,6 @@ export default {
     };
   },
   components: {
-    VueTyper,
     AwesomeButton,
   },
   mounted() {
