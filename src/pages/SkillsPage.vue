@@ -24,7 +24,7 @@ import icon from "../components/AppIcons.vue";
 
 export default {
   components: {
-    icon
+    icon,
   },
   data() {
     return {
@@ -33,22 +33,21 @@ export default {
         ["Javascript", ""],
         ["Typescript", "#1a5cce"],
         ["React.js", "#61dafb"],
+        ["React Native", "#61dafb"],
         ["Vue.js", ""],
 
         ["JQuery", ""],
 
         // html
-        ["HTML", ""],
-        ["CSS", ""],
         ["SASS", ""],
         ["LESS", ""],
-        ["Bootstrap", ""],
-        ["p5.js", ""]
+
+        ["p5.js", ""],
       ],
       technologies2: [
         // Back End
         ["Node.js", ""],
-        ["Java", ""],
+        // ["Java", ""],
         ["Python", ""],
 
         // DB
@@ -59,20 +58,21 @@ export default {
         // Extras
         ["Docker", ""],
         ["NGINX", "#2ba03e"],
-        ["Flutter", "black"],
+        // ["Flutter", "black"],
         ["Linux", ""],
-        ["Web Scraping", ""]
-      ]
+        ["Web Scraping", ""],
+        // ["Bootstrap", ""],
+      ],
     };
   },
   props: {
     blur: Boolean,
-    screenSize: Boolean
-  }
+    screenSize: Boolean,
+  },
 };
 </script>
 
-<style lang="less" >
+<style lang="less">
 @tablet: ~"(max-width: 991px)";
 @phone: ~"(max-width: 767px)";
 
@@ -162,7 +162,7 @@ export default {
         display: inline-block;
         margin: 0 10px;
         // width: 80%;
-        width: 80px;
+        width: 100px;
         height: 100px;
         padding: 20px 0;
         position: relative;
@@ -219,7 +219,7 @@ export default {
         > li {
           display: inline-block;
           margin: 0 10px;
-          padding: 20px 0;
+          padding: 30px 0;
           position: relative;
         }
       }

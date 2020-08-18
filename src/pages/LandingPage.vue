@@ -5,7 +5,7 @@
 
     <div class="leftandright">
       <div class="profilePicture">
-        <img class="roundedBryanImage" src="../assets/roundedProfile.png" />
+        <img class="roundedBryanImage" src="../assets/roundedProfile.jpg" />
         <img class="bryanImage" src="../assets/Bryan.png" />
       </div>
 
@@ -56,23 +56,23 @@ import ParticleNetwork from "../modules/Particle_Network.js";
 export default {
   props: {
     blur: Boolean,
-    screenSize: Boolean
+    screenSize: Boolean,
   },
   data() {
     return {
-      canvas: ["sketch-holder", "sketch-holder2", "sketch-holder3"]
+      canvas: ["sketch-holder", "sketch-holder2", "sketch-holder3"],
     };
   },
   components: {
     VueTyper,
-    AwesomeButton
+    AwesomeButton,
   },
   mounted() {
     for (name of this.canvas) {
       if (name == this.canvas[0]) {
         let config = {
           DOM_CANVAS_NAME: name,
-          mouseDetection: true
+          mouseDetection: true,
         };
         let particle_network = new ParticleNetwork(config);
         particle_network.start();
@@ -80,7 +80,7 @@ export default {
         let config = {
           DOM_CANVAS_NAME: name,
           mouseDetection: false,
-          blur: true
+          blur: true,
         };
         let particle_network = new ParticleNetwork(config);
         particle_network.start();
@@ -112,12 +112,10 @@ export default {
       .pause(500)
       .back(10, 10)
       .line(["Please, check out my skills, projects, and achievements!"], {
-        element: "p"
+        element: "p",
       })
       .line(
-        [
-          "Also, please download my resume. It's in the menu at the upper right corner, and thank you for having a look at my portfolio."
-        ],
+        ["Also, please download my resume. It's in the menu at the upper right corner, and thank you for having a look at my portfolio."],
         { element: "p" }
       );
   },
@@ -127,7 +125,7 @@ export default {
       setTimeout(() => {
         container.scrollIntoView({ behavior: "smooth", alignToTop: false });
       }, 300);
-    }
+    },
   },
   watch: {
     screenSize(isMobile) {
@@ -151,8 +149,8 @@ export default {
         section.animation = "appearText 1s 2.5s forwards";
         section.opacity = "0";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -201,6 +199,7 @@ export default {
         animation: appearImage 2s 0.5s forwards;
       }
       .roundedBryanImage {
+        border-radius: 50%;
         display: none;
       }
     }

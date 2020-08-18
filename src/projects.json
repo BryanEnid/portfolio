@@ -1,0 +1,35 @@
+[
+  {
+    "img_name": "project1.png",
+    "key": 0,
+    "technologies": [
+      {
+        "name": "Node.js",
+        "colors": ["#333333", "#8cc64c"]
+      },
+      {
+        "name": "Express",
+        "colors": ["black", "white"]
+      },
+      {
+        "name": "MongoDB",
+        "colors": ["#413020", "#76b662"]
+      },
+      {
+        "name": "React.js",
+        "colors": ["#20232a", "#61dafb"]
+      },
+      {
+        "name": "Puppeteer.js",
+        "colors": ["#01d8a2", "white"]
+      },
+      {
+        "name": "TypeScript",
+        "colors": ["#294e80", "white"]
+      }
+    ],
+    "description": "This is my latest experiment. (Still playing around with it) Actually, it only display all the food from doordash but my initial idea was compare prices between all deliveries app. It uses a Google Web Scrapping Tool (Puppeter), The data is served on a REST API. The scrapping takes 10 minutes and it repeats every 24 hours so it can have updated data.",
+    "demo_url": "",
+    "github_link": "https: //github.com/BryanEnid/doorflash-backend"
+  }
+]

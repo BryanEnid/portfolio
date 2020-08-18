@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <NavigatorBar v-on:navUpdate="'blurEverything'" :screenSize="isMobile" :status="menuStatus"></NavigatorBar>
+    <NavigatorBar
+      v-on:navUpdate="
+        'blurEverything';
+
+      "
+      :screenSize="isMobile"
+      :status="menuStatus"
+    ></NavigatorBar>
 
     <LandingPage :blur="menuStatus" :screenSize="isMobile"></LandingPage>
     <SkillsPage :blur="menuStatus" :screenSize="isMobile"></SkillsPage>
@@ -23,25 +30,25 @@ export default {
     LandingPage,
     SkillsPage,
     ProjectsPage,
-    AchievementsPage
+    AchievementsPage,
   },
   data() {
     return {
       menuStatus: false,
-      isMobile: false
+      isMobile: false,
     };
   },
   methods: {
     blurEverything(menuStatus) {
       this.menuStatus = menuStatus;
-    }
+    },
   },
   mounted() {
     this.isMobile = window.matchMedia("(max-width: 767px)").matches;
     window.addEventListener("resize", () => {
       this.isMobile = window.matchMedia("(max-width: 767px)").matches;
     });
-  }
+  },
 };
 </script>
 

@@ -1,49 +1,16 @@
 <template>
   <div class="container" id="Projects" :class="{ blur: blur }">
     <h1>Projects Section</h1>
-    <div class="featureProject">
-      <img class="cropped" src="../assets/project1.png" />
-
-      <div class="techs">
-        <h2>Technologies used</h2>
-        <AwesomeButton text="Node.js" border-color="#333333" text-color="#8cc64c"></AwesomeButton>
-        <AwesomeButton text="Express" border-color="black" text-color="white"></AwesomeButton>
-        <AwesomeButton text="MongoDB" border-color="#413020" text-color="#76b662"></AwesomeButton>
-        <AwesomeButton text="React.js" border-color="#20232a" text-color="#61dafb"></AwesomeButton>
-        <AwesomeButton text="Puppeter.js" border-color="#01d8a2" text-color="white"></AwesomeButton>
-        <AwesomeButton text="TypeScript" border-color="#294e80" text-color="white"></AwesomeButton>
-      </div>
-
-      <p class="description">
-        This is my latest experiment. (Still playing around with it)
-        Actually, it only display all the food from doordash but my initial idea was compare prices between all deliveries app. It uses a Google Web Scrapping Tool (Puppeter),
-        The data is served on a REST API. The scrapping takes 10 minutes and it repeats every 24 hours so it can have updated data.
-      </p>
-
-      <div class="demoLinks">
-        <AwesomeButton
-          text="Demo"
-          border-color="#20232a"
-          text-color="#61dafb"
-          iconName="react"
-          linkto="/doorflash/"
-        ></AwesomeButton>
-        <AwesomeButton
-          text="Github"
-          border-color="black"
-          text-color="white"
-          iconName="github"
-          linkto="https://github.com/BryanEnid/doorflash-api/"
-        ></AwesomeButton>
-      </div>
-    </div>
 
     <hr />
 
-    <div class="moreProjects" v-if="projects.length != 0">
+    <template v-for="item in projects">
+      <ProjectItem :description="item.description" :technologies="item.technologies" :key="item.key" :img_name="item.img_name" />
+    </template>
+
+    <!-- <div class="moreProjects" v-if="projects.length != 0">
       <h2>Projects</h2>
       <ul>
-        <!-- remember convert this to a component -->
         <li>
           <a href="#">
             <img class="cropped" src="../assets/project1.png" alt="#" />
@@ -57,17 +24,14 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div> -->
 
-    <p
-      style="text-align:center; margin:40px 0 0 0"
-    >At this moment I'm uploading projects to Github, shortly they will be listed on this website</p>
     <p style="text-align:center; margin:40px 0 0 0">
-      Please check my github:
+      If you wan to check moure please check out my github:
       <a href="https://github.com/BryanEnid/">https://github.com/BryanEnid/</a>
     </p>
 
-    <!-- remember convert this to a component -->
+    <!-- remember convert this to a component because they are going to be multiples -->
     <!-- <div class="moreProjects" v-if="experiments.length != 0">
       <h2>Experiments</h2>
       <ul>
@@ -90,24 +54,27 @@
 </template>
 
 <script>
-import Icon from "../components/AppIcons.vue";
-import AwesomeButton from "../components/LandingPageButton.vue";
+import Icon from "../components/AppIcons";
+import AwesomeButton from "../components/LandingPageButton";
+import ProjectItem from "../components/ProjectItem";
+import json from "../projects.json";
 
 export default {
   components: {
     Icon,
-    AwesomeButton
+    AwesomeButton,
+    ProjectItem,
   },
   props: {
     blur: Boolean,
-    screenSize: Boolean
+    screenSize: Boolean,
   },
   data() {
     return {
-      projects: [],
-      experiments: [{}]
+      projects: json,
+      experiments: [{}],
     };
-  }
+  },
 };
 </script>
 
@@ -130,47 +97,6 @@ export default {
 
   h2 {
     margin: 0 0 0 5px;
-  }
-
-  .featureProject {
-    margin: 0 70px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas: "cropped techs" "cropped description" "cropped demoLinks";
-    grid-gap: 40px;
-
-    .cropped {
-      display: block;
-      grid-area: cropped;
-      object-fit: cover;
-      object-position: 50% 50%;
-      margin: 0 auto;
-
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-    }
-
-    .techs {
-      .btn {
-        padding: 5px;
-        margin: 5px;
-      }
-      grid-area: techs;
-    }
-
-    .description {
-      line-height: 30px;
-      grid-area: description;
-    }
-
-    .demoLinks {
-      .btn {
-        padding: 10px 20px;
-        margin: 5px;
-      }
-    }
   }
 
   hr {
@@ -279,12 +205,6 @@ export default {
       display: block;
       width: 70%;
       margin: 0 auto;
-    }
-
-    .featureProject {
-      padding: initial;
-      margin: 0 0 60px 0;
-      display: block;
     }
 
     .cropped {
