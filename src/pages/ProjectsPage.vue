@@ -6,6 +6,7 @@
 
     <template v-for="(item, index) in projects">
       <ProjectItem
+        :screen_size="screenSize"
         :name="item.name"
         :description="item.description"
         :technologies="item.technologies"
@@ -252,19 +253,6 @@ export default {
       display: block;
       width: 70%;
       margin: 0 auto;
-    }
-
-    .cropped {
-      grid-area: initial;
-      object-fit: cover;
-      object-position: 50% 50%;
-      border-radius: initial !important;
-
-      width: 100%;
-      height: 100%;
-
-      display: block;
-      margin: 0 auto 20px auto;
     }
 
     .techs {

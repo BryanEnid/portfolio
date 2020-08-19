@@ -1,7 +1,7 @@
 <template>
-  <div class="featureProject" :style="this.$props.image_type == 'mobile' && 'grid-template-columns: 1fr 1fr; background: red;'">
-    <img class="cropped" :src="this.$props.image_name" />
-    <img class="cropped" src="../assets/iphone_xr_frame.png" />
+  <div class="featureProject" :style="this.changeStyleColumnAlignmentWhenMobile()">
+    <img class="cropped inner-mobile-picture" :src="this.$props.image_name" :style="this.mobilePicture()" />
+    <img v-if="this.$props.image_type == 'mobile' && !this.$props.screen_size" class="cropped" src="../assets/iphone_xr_frame.png" />
 
     <div class="techs">
       <h2 style="text-align: center">{{ this.$props.name }}</h2>
@@ -35,7 +35,7 @@
         border-color="black"
         text-color="white"
         iconName="github"
-        linkto="https://github.com/BryanEnid/doorflash-api/"
+        :linkto="this.$props.github_link"
       ></AwesomeButton>
     </div>
   </div>
@@ -56,6 +56,24 @@ export default {
     demo_url: String,
     github_link: String,
     image_type: String,
+    screen_size: Boolean,
+  },
+  methods: {
+    changeStyleColumnAlignmentWhenMobile() {
+      if (this.$props.image_type == "mobile")
+        return `
+          grid-template-columns: 1fr 1fr;
+          padding: 45px 0 0 0;
+          grid-template-rows: auto auto 1fr;
+      `;
+    },
+    mobilePicture() {
+      if (this.$props.image_type == "mobile" && this.$props.screen_size)
+        return `
+          border-radius: 37px;
+          border: 10px solid grey;
+      `;
+    },
   },
 };
 </script>
@@ -83,6 +101,12 @@ export default {
     border-radius: 10px;
   }
 
+  .inner-mobile-picture {
+    width: 87%;
+    height: 95%;
+    margin: auto auto;
+  }
+
   .techs {
     .btn {
       padding: 5px;
@@ -108,7 +132,13 @@ export default {
   .featureProject {
     padding: initial;
     margin: 0 0 60px 0;
+    grid-auto-columns: 1fr;
     display: block;
+
+    .cropped {
+      width: 50%;
+      height: 50%;
+    }
   }
 }
 </style>
