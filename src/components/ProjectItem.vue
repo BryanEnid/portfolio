@@ -1,7 +1,7 @@
 <template>
   <div class="featureProject" :style="this.changeStyleColumnAlignmentWhenMobile()">
-    <img class="cropped inner-mobile-picture" :src="this.$props.image_name" :style="this.mobilePicture()" />
-    <img v-show="this.$props.image_type == 'mobile' && !this.$props.screen_size" class="cropped" src="../assets/iphone_xr_frame.png" />
+    <img v-if="this.$props.image_name" class="cropped inner-mobile-picture" :src="this.$props.image_name || ''" :style="this.mobilePicture()" />
+    <img v-if="this.$props.image_name" v-show="this.$props.image_type == 'mobile' && !this.$props.screen_size" class="cropped" src="../assets/iphone_xr_frame.png" />
 
     <div class="techs">
       <h2 style="text-align: center">{{ this.$props.name }}</h2>
@@ -18,6 +18,14 @@
 
     <p class="description">
       {{ this.$props.description }}
+
+      Other technologies used on this project are:
+      <ul>
+        <!-- <template v-for="(item, index) in this.$props.other_technologies">
+          <li :key="index">{{item}}</li>
+        </template> -->
+        
+      </ul>
     </p>
 
     <div class="demoLinks">
@@ -57,21 +65,32 @@ export default {
     github_link: String,
     image_type: String,
     screen_size: Boolean,
+    other_technologies: Array,
+    index: Number
+  },
+  mounted() {
+    // console.log(this.$props)
   },
   methods: {
     changeStyleColumnAlignmentWhenMobile() {
+      let style = ''
       if (this.$props.image_type == "mobile") {
-        return `
+        style +=`
           grid-template-columns: 1fr 1fr;
-          grid-template-rows: auto auto 1fr;
+          grid-template-rows: auto auto 1fr; 
       `;
       } else if (this.$props.image_type == "web") {
-        return `
-          grid-gap: 20px;
-      `;
+        style += `grid-gap: 20px;` ;
+        if (!this.$props.image_name.length) style += 'display: block;'
       }
+      if (this.$props.index % 2 != 0) style += `
+      grid-template-areas: "techs cropped " "description cropped" "demoLinks cropped";
+      grid-template-columns: 1fr 2fr;
+      `
+      return style
     },
     mobilePicture() {
+      
       if (this.$props.image_type == "mobile" && this.$props.screen_size) {
         return `
           border-radius: 37px;
@@ -110,11 +129,9 @@ export default {
     object-fit: contain;
     object-position: 50% 50%;
     margin: auto auto;
-
     width: 100%;
     height: 100%;
     border-radius: 10px;
-
     max-height: 700px;
   }
 

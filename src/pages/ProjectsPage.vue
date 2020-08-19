@@ -9,9 +9,11 @@
         :description="item.description"
         :technologies="item.technologies"
         :key="index"
-        :image_name="item.image_url[0]"
+        :image_name="item.image_url[0] || ''"
         :image_type="item.app_type"
         :github_link="item.github_link"
+        :other_technologies="item.others"
+        :index="index"
       />
     </template>
 
@@ -33,10 +35,10 @@
       </ul>
     </div> -->
 
-    <p style="text-align:center; margin:40px 0 0 0">
-      If you wan to check moure please check out my github:
+    <h3 style="text-align:center; margin:40px 0 0 0">
+      Check out more on my GitHub:
       <a href="https://github.com/BryanEnid/">https://github.com/BryanEnid/</a>
-    </p>
+    </h3>
 
     <!-- remember convert this to a component because they are going to be multiples -->
     <!-- <div class="moreProjects" v-if="experiments.length != 0">
@@ -85,12 +87,15 @@ export default {
   beforeCreate() {
     (async () => {
       try {
-        const res = await fetch("https://api.github.com/users/BryanEnid/repos", {
+        const res = await fetch("https://api.github.com/users/BryanEnid/repos?", {
           headers: {
-            Authorization: `token ${env.API_KEY}`,
+            Authorization: `token ${env.API_KEY_1}${env.API_KEY_2}`,
           },
         });
+
         const repos = await res.json();
+        if (!res.ok) throw new Error(repos.message);
+
         const demos = repos.filter((el) => {
           if (el.description !== null) {
             return el.description.indexOf("(*)") != -1;
@@ -103,7 +108,7 @@ export default {
             .then((res) => res.json())
             .then((config_file) => {
               const image_names = config_file.image_names.map(
-                (img_name) => `https://raw.githubusercontent.com/BryanEnid/${el.name}/master/_preview/${img_name}`
+                (img_name) => img_name.length > 0 && `https://raw.githubusercontent.com/BryanEnid/${el.name}/master/_preview/${img_name}`
               );
 
               this.projects.push({
@@ -113,7 +118,8 @@ export default {
                 description: el.description.replace("(*)", ""),
                 image_url: image_names,
               });
-            });
+            })
+            .catch((e) => console.log(e.message));
         });
       } catch (e) {
         console.log(e.message);
