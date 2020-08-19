@@ -1,7 +1,17 @@
 <template>
   <div class="featureProject" :style="this.changeStyleColumnAlignmentWhenMobile()">
-    <img v-if="this.$props.image_name" class="cropped inner-mobile-picture" :src="this.$props.image_name || ''" :style="this.mobilePicture()" />
-    <img v-if="this.$props.image_name" v-show="this.$props.image_type == 'mobile' && !this.$props.screen_size" class="cropped" src="../assets/iphone_xr_frame.png" />
+    <img
+      v-if="this.$props.image_name"
+      class="cropped inner-mobile-picture"
+      :src="this.$props.image_name || ''"
+      :style="this.mobilePicture()"
+    />
+    <img
+      v-if="this.$props.image_name"
+      v-show="this.$props.image_type == 'mobile' && !this.$props.screen_size"
+      class="cropped"
+      src="../assets/iphone_xr_frame.png"
+    />
 
     <div class="techs">
       <h2 style="text-align: center">{{ this.$props.name }}</h2>
@@ -19,12 +29,12 @@
     <p class="description">
       {{ this.$props.description }}
 
-      Other technologies used on this project are:
-      <ul>
-        <!-- <template v-for="(item, index) in this.$props.other_technologies">
+      <br><br>
+      Other tools used:
+      <ul class="other-tools" >
+        <template v-for="(item, index) in this.$props.other_technologies">
           <li :key="index">{{item}}</li>
-        </template> -->
-        
+        </template>
       </ul>
     </p>
 
@@ -66,31 +76,31 @@ export default {
     image_type: String,
     screen_size: Boolean,
     other_technologies: Array,
-    index: Number
+    index: Number,
   },
   mounted() {
     // console.log(this.$props)
   },
   methods: {
     changeStyleColumnAlignmentWhenMobile() {
-      let style = ''
+      let style = "";
       if (this.$props.image_type == "mobile") {
-        style +=`
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: auto auto 1fr; 
-      `;
+        style += " grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; ";
       } else if (this.$props.image_type == "web") {
-        style += `grid-gap: 20px;` ;
-        if (!this.$props.image_name.length) style += 'display: block;'
+        style += " grid-gap: 20px; ";
+        if (!this.$props.image_name.length) style += " display: block; ";
       }
-      if (this.$props.index % 2 != 0) style += `
-      grid-template-areas: "techs cropped " "description cropped" "demoLinks cropped";
-      grid-template-columns: 1fr 2fr;
-      `
-      return style
+
+      if (this.$props.index % 2 != 0) {
+        style += ' grid-template-areas: "techs cropped" "description cropped" "demoLinks cropped"; ';
+        if (this.$props.image_type == "web") {
+          style += "grid-template-columns: 1fr 2fr;";
+        }
+      }
+      console.log(style);
+      return style;
     },
     mobilePicture() {
-      
       if (this.$props.image_type == "mobile" && this.$props.screen_size) {
         return `
           border-radius: 37px;
@@ -112,6 +122,19 @@ export default {
 
 <style lang="less">
 @phone: ~"(max-width: 767px)";
+
+.other-tools {
+display: flex; 
+flex-direction: row; 
+flex-wrap: wrap;
+width: 100%;
+
+> li {
+  margin-right: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+}
 
 .featureProject {
   max-height: 830px;
