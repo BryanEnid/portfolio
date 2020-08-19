@@ -1,9 +1,11 @@
 <template>
-  <div class="featureProject">
-    <img class="cropped" :src="require(`../assets/${this.$props.img_name}`)" />
+  <div class="featureProject" :style="this.$props.image_type == 'mobile' && 'grid-template-columns: 1fr 1fr; background: red;'">
+    <img class="cropped" :src="this.$props.image_name" />
+    <img class="cropped" src="../assets/iphone_xr_frame.png" />
 
     <div class="techs">
-      <h2>Technologies used</h2>
+      <h2 style="text-align: center">{{ this.$props.name }}</h2>
+      <h3>Technologies used</h3>
       <template v-for="(technology, index) in this.$props.technologies">
         <AwesomeButton
           :key="index"
@@ -47,16 +49,14 @@ export default {
     AwesomeButton,
   },
   props: {
+    name: String,
     technologies: Array,
     description: String,
-    img_name: String,
+    image_name: String,
     demo_url: String,
     github_link: String,
+    image_type: String,
   },
-  data() {
-    return {};
-  },
-  mounted() {},
 };
 </script>
 
@@ -74,7 +74,7 @@ export default {
   .cropped {
     display: block;
     grid-area: cropped;
-    object-fit: cover;
+    object-fit: contain;
     object-position: 50% 50%;
     margin: 0 auto;
 
