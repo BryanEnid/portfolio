@@ -7,7 +7,7 @@
       <a href="https://www.linkedin.com/in/bryanenid/" target="_blank">
         <icon name="linkedin" class="linkedin" size="30%" />
       </a>
-      <a href="#">
+      <a href="/resume.pdf" target="_blank">
         <li class="resume">Download Resume</li>
       </a>
     </ul>
@@ -18,7 +18,7 @@
       <div></div>
     </div>
 
-    <div id="exitMenu" :class="{hidden: !isUlVisible}" @click="isUlVisible = false"></div>
+    <div id="exitMenu" :class="{ hidden: !isUlVisible }" @click="isUlVisible = false"></div>
   </nav>
 </template>
 
@@ -28,18 +28,18 @@ import icon from "../components/AppIcons.vue";
 export default {
   name: "NavigatorBar",
   components: {
-    icon
+    icon,
   },
   props: {
     screenSize: Boolean,
-    status: Boolean
+    status: Boolean,
   },
   data() {
     return {
       isUlVisible: false,
       ulNavigation: null,
       windowSize: 1300,
-      windowWasResized: false
+      windowWasResized: false,
     };
   },
   methods: {},
@@ -62,8 +62,8 @@ export default {
     },
     status() {
       this.isUlVisible = this.$props.status;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -2,8 +2,6 @@
   <div class="container" id="Projects" :class="{ blur: blur }">
     <h1>Projects Section</h1>
 
-    <hr />
-
     <template v-for="(item, index) in projects">
       <ProjectItem
         :screen_size="screenSize"
@@ -147,10 +145,6 @@ export default {
     margin: 0 0 0 5px;
   }
 
-  hr {
-    display: none;
-  }
-
   .moreProjects {
     text-align: center;
     margin: 70px 0;
@@ -247,12 +241,6 @@ export default {
       color: #333;
       text-align: center;
       margin: 40px 0;
-    }
-
-    hr {
-      display: block;
-      width: 70%;
-      margin: 0 auto;
     }
 
     .techs {

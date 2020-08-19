@@ -1,7 +1,7 @@
 <template>
   <div class="featureProject" :style="this.changeStyleColumnAlignmentWhenMobile()">
     <img class="cropped inner-mobile-picture" :src="this.$props.image_name" :style="this.mobilePicture()" />
-    <img v-if="this.$props.image_type == 'mobile' && !this.$props.screen_size" class="cropped" src="../assets/iphone_xr_frame.png" />
+    <img v-show="this.$props.image_type == 'mobile' && !this.$props.screen_size" class="cropped" src="../assets/iphone_xr_frame.png" />
 
     <div class="techs">
       <h2 style="text-align: center">{{ this.$props.name }}</h2>
@@ -60,19 +60,32 @@ export default {
   },
   methods: {
     changeStyleColumnAlignmentWhenMobile() {
-      if (this.$props.image_type == "mobile")
+      if (this.$props.image_type == "mobile") {
         return `
           grid-template-columns: 1fr 1fr;
-          padding: 45px 0 0 0;
           grid-template-rows: auto auto 1fr;
       `;
+      } else if (this.$props.image_type == "web") {
+        return `
+          grid-gap: 20px;
+      `;
+      }
     },
     mobilePicture() {
-      if (this.$props.image_type == "mobile" && this.$props.screen_size)
+      if (this.$props.image_type == "mobile" && this.$props.screen_size) {
         return `
           border-radius: 37px;
           border: 10px solid grey;
       `;
+      } else if (this.$props.image_type == "web") {
+        return `
+          border-radius: 3px;
+          border: 1px solid grey;
+          object-fit: cover;
+          max-width: initial;
+          max-height: 500px;
+      `;
+      }
     },
   },
 };
@@ -82,29 +95,33 @@ export default {
 @phone: ~"(max-width: 767px)";
 
 .featureProject {
-  margin: 0 70px 100px 70px;
+  max-height: 830px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: auto auto 1fr;
   grid-template-areas: "cropped techs" "cropped description" "cropped demoLinks";
   grid-gap: 40px;
+  border-top: 1px solid rgb(206, 206, 206);
+  padding: 50px;
 
   .cropped {
     display: block;
     grid-area: cropped;
     object-fit: contain;
     object-position: 50% 50%;
-    margin: 0 auto;
+    margin: auto auto;
 
     width: 100%;
     height: 100%;
     border-radius: 10px;
+
+    max-height: 700px;
   }
 
   .inner-mobile-picture {
+    max-width: 300px;
     width: 87%;
     height: 95%;
-    margin: auto auto;
   }
 
   .techs {
@@ -132,8 +149,10 @@ export default {
   .featureProject {
     padding: initial;
     margin: 0 0 60px 0;
+    padding: 30px 0;
     grid-auto-columns: 1fr;
     display: block;
+    max-height: initial;
 
     .cropped {
       width: 50%;
