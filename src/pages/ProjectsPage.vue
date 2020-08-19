@@ -5,7 +5,8 @@
     <hr />
 
     <template v-for="item in projects">
-      <ProjectItem :description="item.description" :technologies="item.technologies" :key="item.key" :img_name="item.img_name" />
+      <!-- <ProjectItem :description="item.description" :technologies="item.technologies" :key="item.key" :img_name="item.img_name" /> -->
+      {{ item }}
     </template>
 
     <!-- <div class="moreProjects" v-if="projects.length != 0">
@@ -57,7 +58,7 @@
 import Icon from "../components/AppIcons";
 import AwesomeButton from "../components/LandingPageButton";
 import ProjectItem from "../components/ProjectItem";
-import json from "../projects.json";
+// import json from "../projects.json";
 
 export default {
   components: {
@@ -71,9 +72,48 @@ export default {
   },
   data() {
     return {
-      projects: json,
+      projects: [],
       experiments: [{}],
     };
+  },
+  beforeMount() {
+    (async () => {
+      try {
+        const res = await fetch("https://api.github.com/users/BryanEnid/repos", {
+          headers: {
+            Authorization: "token 04ddeb04f6d68193c9404348be234da8d04ddea7",
+          },
+        });
+        const repos = await res.json();
+        const demos = repos.filter((el) => {
+          if (el.description !== null) {
+            return el.description.indexOf("(*)") != -1;
+          }
+          return false;
+        });
+
+        return demos.map((el) => {
+          fetch(`https://raw.githubusercontent.com/BryanEnid/${el.name}/master/_preview/config.json`)
+            .then((res) => res.json())
+            .then((config_file) => {
+              this.projects = {
+                ...config_file,
+                github_link: el.html_url,
+                stars: el.stargacers_count,
+                image_url: config_file.image_names(
+                  (img_name) => `https://raw.githubusercontent.com/BryanEnid/${el.name}/master/_preview/${img_name}`
+                ),
+              };
+              console.log({ ...config_file, github_link: el.html_url, stars: el.stargacers_count });
+            });
+        });
+      } catch (e) {
+        console.log(e.message);
+      }
+    })();
+  },
+  mounted() {
+    console.log(this.projects);
   },
 };
 </script>

@@ -4,15 +4,15 @@
 
     <div class="moreSkills">
       <ul>
-        <template v-for="techs of technologies1">
-          <icon :name="techs[0]" :color="techs[1]" size="initial" :showName="true" :key="techs"></icon>
+        <template v-for="(techs, index) of technologies1">
+          <icon :name="techs[0]" :color="techs[1]" size="initial" :showName="true" :key="index"></icon>
         </template>
       </ul>
     </div>
     <div class="moreSkills">
       <ul>
-        <template v-for="techs of technologies2">
-          <icon :name="techs[0]" :color="techs[1]" size="initial" :showName="true" :key="techs"></icon>
+        <template v-for="(techs, index) of technologies2">
+          <icon :name="techs[0]" :color="techs[1]" size="initial" :showName="true" :key="index"></icon>
         </template>
       </ul>
     </div>

@@ -4,7 +4,7 @@
 
     <div class="techs">
       <h2>Technologies used</h2>
-      <template v-for="(technology, index) in technologies">
+      <template v-for="(technology, index) in this.$props.technologies">
         <AwesomeButton
           :key="index"
           :text="technology.name"
@@ -54,13 +54,9 @@ export default {
     github_link: String,
   },
   data() {
-    return {
-      technologies: this.$props.technologies,
-    };
+    return {};
   },
-  mounted() {
-    console.log(this.$props);
-  },
+  mounted() {},
 };
 </script>
 
